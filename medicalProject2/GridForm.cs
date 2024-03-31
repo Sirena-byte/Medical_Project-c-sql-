@@ -41,6 +41,16 @@ namespace medicalProject2
             dataGridView1.Columns[5].Visible = false;
 
         }
+
+        //метод очищает поля
+        private void clearField()
+        {
+            idField.Text = "";
+            typeProductField.Text = "";
+            countField.Text = "";
+            postavkaField.Text = "";
+            priceField.Text = "";
+        }
         private void ReadSingleRow(DataGridView dgw,IDataRecord record)
         {
             dgw.Rows.Add(record.GetInt32(0),record.GetString(1),record.GetInt32(2),record.GetString(3),record.GetInt32(4),RowState.ModifietedNew);
@@ -92,6 +102,7 @@ namespace medicalProject2
         private void restartButtonn_Click(object sender, EventArgs e)
         {
             RefreshDataGrid(dataGridView1);
+            clearField();
         }
 
         private void NewsButton_Click(object sender, EventArgs e)
@@ -177,6 +188,7 @@ namespace medicalProject2
         private void deleteButton_Click(object sender, EventArgs e)
         {
             deleteRow();
+            clearField();
         }
 
        
@@ -190,8 +202,8 @@ namespace medicalProject2
             var selectedRovIndex = dataGridView1.CurrentCell.RowIndex;//присваиваем значение текущего столбца и текущего индекса
             var id = idField.Text;
             var type = typeProductField.Text;
-            var count = countField;
-            var postav = postavkaField;
+            var count = countField.Text;
+            var postav = postavkaField.Text;
             int price;
 
             //проверяем не пустая ли строка с определенным индексом в нулевом столбце
@@ -215,6 +227,12 @@ namespace medicalProject2
         private void changeButton_Click(object sender, EventArgs e)
         {
             change();
+            clearField();
+        }
+
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            clearField();
         }
     }
 }

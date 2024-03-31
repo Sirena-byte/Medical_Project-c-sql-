@@ -347,6 +347,7 @@
             this.clearButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.clearButton.TabIndex = 0;
             this.clearButton.TabStop = false;
+            this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
             // 
             // tabPage2
             // 
