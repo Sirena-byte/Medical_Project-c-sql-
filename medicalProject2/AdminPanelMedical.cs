@@ -33,7 +33,6 @@ namespace medicalProject2
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
-            
         }
 
 
@@ -72,7 +71,7 @@ namespace medicalProject2
 
         }
 
-        private void ReadSingleRow(DataGridView dgw, IDataRecord record)
+        protected void ReadSingleRow(DataGridView dgw, IDataRecord record)
         {
             dgw.Rows.Add(record.GetInt32(0), record.GetString(1), record.GetString(2), record.GetString(3), record.GetInt32(4), record.GetString(5), RowState.ModifietedNew);
         }
@@ -137,7 +136,11 @@ namespace medicalProject2
             ClearField();
         }
 
-        
+        private void NewsButton_Click(object sender, EventArgs e)
+        {
+            AddMedicalForm addForm = new AddMedicalForm();
+            addForm.Show();
+        }
     }
 }
 

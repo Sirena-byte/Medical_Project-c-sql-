@@ -52,6 +52,12 @@
     <Compile Include="AddForm.Designer.cs">
       <DependentUpon>AddForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddMedicalForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddMedicalForm.Designer.cs">
+      <DependentUpon>AddMedicalForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdminPanelMedical.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +96,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AddForm.resx">
       <DependentUpon>AddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddMedicalForm.resx">
+      <DependentUpon>AddMedicalForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AdminPanelMedical.resx">
       <DependentUpon>AdminPanelMedical.cs</DependentUpon>

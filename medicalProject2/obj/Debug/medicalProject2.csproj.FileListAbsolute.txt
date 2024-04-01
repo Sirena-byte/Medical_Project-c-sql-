@@ -13,3 +13,4 @@ D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.pdb
 D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.GridForm.resources
 D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.AddForm.resources
 D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.AdminPanelMedical.resources
+D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.AddMedicalForm.resources

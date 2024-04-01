@@ -174,6 +174,7 @@
             this.NewsButton.TabIndex = 0;
             this.NewsButton.Text = "Новая запись";
             this.NewsButton.UseVisualStyleBackColor = true;
+            this.NewsButton.Click += new System.EventHandler(this.NewsButton_Click);
             // 
             // panel2
             // 

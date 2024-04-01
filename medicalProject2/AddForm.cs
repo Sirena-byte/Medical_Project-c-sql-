@@ -39,6 +39,7 @@ namespace medicalProject2
                 command.ExecuteNonQuery();
 
                 MessageBox.Show("Запись успешно добавлена!", "Успех!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+               
             }
             else
             {
