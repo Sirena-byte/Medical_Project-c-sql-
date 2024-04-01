@@ -16,7 +16,7 @@ namespace medicalProject2
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AutorizForm());
+            Application.Run(new AdminPanelMedical());
         }
     }
 }
