@@ -28,13 +28,34 @@ namespace medicalProject2
 
         private void AddMedicalForm_Load(object sender, EventArgs e)
         {
-           //загрузка списков в выпадающий список
-            this.employeesTableAdapter.Fill(this.medical_project_DBDataSet.employees);
-            this.categoryTableAdapter.Fill(this.medical_project_DBDataSet.category);
+         
+          //заполнение комбобоксов
+            LoadComboBox("SELECT id_employee,concat_ws(' ',first_name,last_name,surname) as name FROM employees", "name","id_employee",this.supervisorField);
+            LoadComboBox("SELECT * FROM category", "name_category", "id_category", this.categoryField);
             this.ClearField();
-           
+            
 
         }
+        //вывод значений из бд в комбо бокс
+        private void LoadComboBox(string query,string name, string value,ComboBox box)
+        {
+            dbM.openConnection();
+            
+            var command = new SqlCommand(query, dbM.getConnection());
+            command.ExecuteNonQuery();
+            command.CommandType = CommandType.Text;
+
+            DataTable table = new DataTable();
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            adapter.Fill(table);
+            box.DisplayMember = name;
+            box.ValueMember = value;
+            box.DataSource = table;
+
+            dbM.closeConnection();
+            
+        }
+
 
         //метод очищает поля
         private void ClearField()
@@ -55,35 +76,20 @@ namespace medicalProject2
             var name = nameField.Text;
             int category = (int)categoryField.SelectedValue;
             var address = streetField.Text + "-" + hauseField.Text;
-            int phone;
+            var phone = phoneField.Text;
             int supervisor = (int)supervisorField.SelectedValue;
 
-            //проверка на тип
-            if (int.TryParse(phoneField.Text, out phone))
-            {
+
                 var addQuery = $"insert into medical_inst (id_category, name_inst,phone_inst, address_inst, supervisor_id) values ('{category}','{name}','{phone}','{address}','{supervisor}')";
                 var command = new SqlCommand(addQuery, dbM.getConnection());
                 command.ExecuteNonQuery();
                 MessageBox.Show("Запись успешно добавлена!", "Успех!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("Номер телефона введен в неверном формате! Номер телефона должен состоять только из цифр.", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
 
             dbM.closeConnection();
+            //данные в таблице сами не обновляются
+            //можно добавить окно не успеха
         }
-        //событие для проверки значения в комбо боксе
-       /* private void supervisorField_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            MessageBox.Show(supervisorField.SelectedValue.ToString() + " "+ supervisorField.SelectedValue.GetType());
-        }
-
-        private void categoryField_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            MessageBox.Show(categoryField.SelectedValue.ToString() + " " + categoryField.SelectedValue.GetType());
-        }*/
-
-
     }
 }
+
+

@@ -58,12 +58,6 @@
     <Compile Include="AddMedicalForm.Designer.cs">
       <DependentUpon>AddMedicalForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AdminPanelMedical.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AdminPanelMedical.Designer.cs">
-      <DependentUpon>AdminPanelMedical.cs</DependentUpon>
-    </Compile>
     <Compile Include="AutorizForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +65,12 @@
       <DependentUpon>AutorizForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DB.cs" />
+    <Compile Include="EmployeesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmployeesForm.Designer.cs">
+      <DependentUpon>EmployeesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="GridForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +78,12 @@
       <DependentUpon>GridForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MedicalDB.cs" />
+    <Compile Include="MedicalForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MedicalForm.Designer.cs">
+      <DependentUpon>MedicalForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="medical_project_DBDataSet.cs">
       <DependentUpon>medical_project_DBDataSet.xsd</DependentUpon>
     </Compile>
@@ -100,14 +106,17 @@
     <EmbeddedResource Include="AddMedicalForm.resx">
       <DependentUpon>AddMedicalForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AdminPanelMedical.resx">
-      <DependentUpon>AdminPanelMedical.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="AutorizForm.resx">
       <DependentUpon>AutorizForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EmployeesForm.resx">
+      <DependentUpon>EmployeesForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GridForm.resx">
       <DependentUpon>GridForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MedicalForm.resx">
+      <DependentUpon>MedicalForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
@@ -169,6 +178,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="images\info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\user.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

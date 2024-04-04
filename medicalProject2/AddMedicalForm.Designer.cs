@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.saveButton = new System.Windows.Forms.Button();
-            this.phoneField = new System.Windows.Forms.TextBox();
             this.streetField = new System.Windows.Forms.TextBox();
             this.nameField = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -46,24 +45,25 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.categoryField = new System.Windows.Forms.ComboBox();
-            this.supervisorField = new System.Windows.Forms.ComboBox();
-            this.hauseField = new System.Windows.Forms.TextBox();
-            this.medical_project_DBDataSet = new medicalProject2.medical_project_DBDataSet();
             this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.categoryTableAdapter = new medicalProject2.medical_project_DBDataSetTableAdapters.categoryTableAdapter();
-            this.medicalprojectDBDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.categoryBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.medical_project_DBDataSet = new medicalProject2.medical_project_DBDataSet();
+            this.supervisorField = new System.Windows.Forms.ComboBox();
             this.employeesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.medicalprojectDBDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.hauseField = new System.Windows.Forms.TextBox();
+            this.categoryTableAdapter = new medicalProject2.medical_project_DBDataSetTableAdapters.categoryTableAdapter();
+            this.categoryBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.employeesTableAdapter = new medicalProject2.medical_project_DBDataSetTableAdapters.employeesTableAdapter();
+            this.phoneField = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clearButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.infoButton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.medical_project_DBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.medical_project_DBDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.employeesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medicalprojectDBDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.employeesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // saveButton
@@ -77,14 +77,6 @@
             this.saveButton.UseVisualStyleBackColor = false;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
-            // phoneField
-            // 
-            this.phoneField.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.phoneField.Location = new System.Drawing.Point(243, 243);
-            this.phoneField.Name = "phoneField";
-            this.phoneField.Size = new System.Drawing.Size(258, 24);
-            this.phoneField.TabIndex = 37;
-            // 
             // streetField
             // 
             this.streetField.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -96,9 +88,9 @@
             // nameField
             // 
             this.nameField.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nameField.Location = new System.Drawing.Point(243, 176);
+            this.nameField.Location = new System.Drawing.Point(243, 148);
             this.nameField.Name = "nameField";
-            this.nameField.Size = new System.Drawing.Size(258, 24);
+            this.nameField.Size = new System.Drawing.Size(253, 24);
             this.nameField.TabIndex = 35;
             // 
             // label6
@@ -125,7 +117,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(148, 176);
+            this.label4.Location = new System.Drawing.Point(148, 151);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(79, 18);
             this.label4.TabIndex = 30;
@@ -135,7 +127,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(148, 147);
+            this.label3.Location = new System.Drawing.Point(143, 180);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(84, 18);
             this.label3.TabIndex = 29;
@@ -144,7 +136,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(211, 160);
+            this.label2.Location = new System.Drawing.Point(206, 193);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(0, 16);
             this.label2.TabIndex = 28;
@@ -153,7 +145,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(151, 110);
+            this.label7.Location = new System.Drawing.Point(258, 178);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(0, 20);
             this.label7.TabIndex = 27;
@@ -226,78 +218,82 @@
             this.categoryField.DisplayMember = "name_category";
             this.categoryField.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.categoryField.FormattingEnabled = true;
-            this.categoryField.Location = new System.Drawing.Point(243, 144);
+            this.categoryField.Location = new System.Drawing.Point(243, 177);
             this.categoryField.Name = "categoryField";
-            this.categoryField.Size = new System.Drawing.Size(258, 26);
+            this.categoryField.Size = new System.Drawing.Size(253, 26);
             this.categoryField.TabIndex = 40;
             this.categoryField.ValueMember = "id_category";
-//            this.categoryField.SelectedIndexChanged += new System.EventHandler(this.categoryField_SelectedIndexChanged);
-            // 
-            // supervisorField
-            // 
-            this.supervisorField.DataSource = this.employeesBindingSource;
-            this.supervisorField.DisplayMember = "first_name";
-            this.supervisorField.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.supervisorField.FormattingEnabled = true;
-            this.supervisorField.Location = new System.Drawing.Point(243, 275);
-            this.supervisorField.Name = "supervisorField";
-            this.supervisorField.Size = new System.Drawing.Size(258, 26);
-            this.supervisorField.TabIndex = 41;
-            this.supervisorField.ValueMember = "id_employee";
-       //   this.supervisorField.SelectedIndexChanged += new System.EventHandler(this.supervisorField_SelectedIndexChanged);
-            // 
-            // hauseField
-            // 
-            this.hauseField.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.hauseField.Location = new System.Drawing.Point(442, 208);
-            this.hauseField.Name = "hauseField";
-            this.hauseField.Size = new System.Drawing.Size(59, 24);
-            this.hauseField.TabIndex = 42;
-            // 
-            // medical_project_DBDataSet
-            // 
-            this.medical_project_DBDataSet.DataSetName = "medical_project_DBDataSet";
-            this.medical_project_DBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // categoryBindingSource
             // 
             this.categoryBindingSource.DataMember = "category";
             this.categoryBindingSource.DataSource = this.medical_project_DBDataSet;
             // 
-            // categoryTableAdapter
+            // medical_project_DBDataSet
             // 
-            this.categoryTableAdapter.ClearBeforeFill = true;
+            this.medical_project_DBDataSet.DataSetName = "medical_project_DBDataSet";
+            this.medical_project_DBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // medicalprojectDBDataSetBindingSource
+            // supervisorField
             // 
-            this.medicalprojectDBDataSetBindingSource.DataSource = this.medical_project_DBDataSet;
-            this.medicalprojectDBDataSetBindingSource.Position = 0;
-            // 
-            // categoryBindingSource1
-            // 
-            this.categoryBindingSource1.DataMember = "category";
-            this.categoryBindingSource1.DataSource = this.medicalprojectDBDataSetBindingSource;
+            this.supervisorField.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.supervisorField.FormattingEnabled = true;
+            this.supervisorField.Location = new System.Drawing.Point(243, 275);
+            this.supervisorField.Name = "supervisorField";
+            this.supervisorField.Size = new System.Drawing.Size(253, 26);
+            this.supervisorField.TabIndex = 41;
             // 
             // employeesBindingSource
             // 
             this.employeesBindingSource.DataMember = "employees";
             this.employeesBindingSource.DataSource = this.medicalprojectDBDataSetBindingSource;
             // 
+            // medicalprojectDBDataSetBindingSource
+            // 
+            this.medicalprojectDBDataSetBindingSource.DataSource = this.medical_project_DBDataSet;
+            this.medicalprojectDBDataSetBindingSource.Position = 0;
+            // 
+            // hauseField
+            // 
+            this.hauseField.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.hauseField.Location = new System.Drawing.Point(442, 208);
+            this.hauseField.Name = "hauseField";
+            this.hauseField.Size = new System.Drawing.Size(54, 24);
+            this.hauseField.TabIndex = 42;
+            // 
+            // categoryTableAdapter
+            // 
+            this.categoryTableAdapter.ClearBeforeFill = true;
+            // 
+            // categoryBindingSource1
+            // 
+            this.categoryBindingSource1.DataMember = "category";
+            this.categoryBindingSource1.DataSource = this.medicalprojectDBDataSetBindingSource;
+            // 
             // employeesTableAdapter
             // 
             this.employeesTableAdapter.ClearBeforeFill = true;
+            // 
+            // phoneField
+            // 
+            this.phoneField.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.phoneField.Location = new System.Drawing.Point(243, 239);
+            this.phoneField.Mask = "(375) 00-000-00-00";
+            this.phoneField.Name = "phoneField";
+            this.phoneField.Size = new System.Drawing.Size(253, 24);
+            this.phoneField.TabIndex = 43;
             // 
             // AddMedicalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(622, 450);
+            this.Controls.Add(this.phoneField);
             this.Controls.Add(this.hauseField);
             this.Controls.Add(this.supervisorField);
             this.Controls.Add(this.categoryField);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.saveButton);
-            this.Controls.Add(this.phoneField);
             this.Controls.Add(this.streetField);
             this.Controls.Add(this.nameField);
             this.Controls.Add(this.label6);
@@ -307,6 +303,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.panel1);
+            this.HelpButton = true;
             this.Name = "AddMedicalForm";
             this.Text = "AddMedical";
             this.Load += new System.EventHandler(this.AddMedicalForm_Load);
@@ -315,11 +312,11 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clearButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.infoButton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.medical_project_DBDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.medical_project_DBDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.employeesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.medicalprojectDBDataSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoryBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.employeesBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -328,7 +325,6 @@
         #endregion
 
         private System.Windows.Forms.Button saveButton;
-        private System.Windows.Forms.TextBox phoneField;
         private System.Windows.Forms.TextBox streetField;
         private System.Windows.Forms.TextBox nameField;
         private System.Windows.Forms.Label label6;
@@ -353,5 +349,6 @@
         private System.Windows.Forms.BindingSource categoryBindingSource1;
         private System.Windows.Forms.BindingSource employeesBindingSource;
         private medical_project_DBDataSetTableAdapters.employeesTableAdapter employeesTableAdapter;
+        private System.Windows.Forms.MaskedTextBox phoneField;
     }
 }
