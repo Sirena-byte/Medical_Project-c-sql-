@@ -68,7 +68,7 @@
             // 
             // saveButton
             // 
-            this.saveButton.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.saveButton.BackColor = System.Drawing.Color.Pink;
             this.saveButton.Location = new System.Drawing.Point(243, 375);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(192, 38);
@@ -162,7 +162,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.BackColor = System.Drawing.Color.Pink;
             this.panel1.Controls.Add(this.clearButton);
             this.panel1.Controls.Add(this.infoButton);
             this.panel1.Controls.Add(this.label1);

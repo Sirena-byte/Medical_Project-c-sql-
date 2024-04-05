@@ -31,6 +31,10 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.searchField = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.searchButton = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.clearButton = new System.Windows.Forms.PictureBox();
+            this.restartButtonn = new System.Windows.Forms.PictureBox();
             this.idName = new System.Windows.Forms.Label();
             this.idField = new System.Windows.Forms.TextBox();
             this.panelmenu = new System.Windows.Forms.Panel();
@@ -49,22 +53,18 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.searchButton = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.clearButton = new System.Windows.Forms.PictureBox();
-            this.restartButtonn = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.surnameField = new System.Windows.Forms.TextBox();
             this.lastNameField = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
-            this.panelmenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clearButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.restartButtonn)).BeginInit();
+            this.panelmenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
@@ -100,6 +100,46 @@
             this.label7.Size = new System.Drawing.Size(123, 25);
             this.label7.TabIndex = 5;
             this.label7.Text = "Сотрудники";
+            // 
+            // searchButton
+            // 
+            this.searchButton.Image = global::medicalProject2.Properties.Resources.loupe;
+            this.searchButton.Location = new System.Drawing.Point(937, 6);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(30, 30);
+            this.searchButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.searchButton.TabIndex = 2;
+            this.searchButton.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::medicalProject2.Properties.Resources.user1;
+            this.pictureBox1.Location = new System.Drawing.Point(242, 8);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
+            // clearButton
+            // 
+            this.clearButton.Image = global::medicalProject2.Properties.Resources.clear1;
+            this.clearButton.Location = new System.Drawing.Point(885, 6);
+            this.clearButton.Name = "clearButton";
+            this.clearButton.Size = new System.Drawing.Size(30, 30);
+            this.clearButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.clearButton.TabIndex = 0;
+            this.clearButton.TabStop = false;
+            // 
+            // restartButtonn
+            // 
+            this.restartButtonn.Image = global::medicalProject2.Properties.Resources.restart;
+            this.restartButtonn.Location = new System.Drawing.Point(840, 8);
+            this.restartButtonn.Name = "restartButtonn";
+            this.restartButtonn.Size = new System.Drawing.Size(30, 30);
+            this.restartButtonn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.restartButtonn.TabIndex = 1;
+            this.restartButtonn.TabStop = false;
             // 
             // idName
             // 
@@ -232,6 +272,7 @@
             this.NewsButton.TabIndex = 71;
             this.NewsButton.Text = "Новая запись";
             this.NewsButton.UseVisualStyleBackColor = true;
+            this.NewsButton.Click += new System.EventHandler(this.NewsButton_Click);
             // 
             // dataGridView1
             // 
@@ -281,46 +322,6 @@
             this.label3.Size = new System.Drawing.Size(69, 16);
             this.label3.TabIndex = 77;
             this.label3.Text = "Фамилия:";
-            // 
-            // searchButton
-            // 
-            this.searchButton.Image = global::medicalProject2.Properties.Resources.loupe;
-            this.searchButton.Location = new System.Drawing.Point(937, 6);
-            this.searchButton.Name = "searchButton";
-            this.searchButton.Size = new System.Drawing.Size(30, 30);
-            this.searchButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.searchButton.TabIndex = 2;
-            this.searchButton.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::medicalProject2.Properties.Resources.user1;
-            this.pictureBox1.Location = new System.Drawing.Point(242, 8);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(25, 25);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
-            // 
-            // clearButton
-            // 
-            this.clearButton.Image = global::medicalProject2.Properties.Resources.clear1;
-            this.clearButton.Location = new System.Drawing.Point(885, 6);
-            this.clearButton.Name = "clearButton";
-            this.clearButton.Size = new System.Drawing.Size(30, 30);
-            this.clearButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.clearButton.TabIndex = 0;
-            this.clearButton.TabStop = false;
-            // 
-            // restartButtonn
-            // 
-            this.restartButtonn.Image = global::medicalProject2.Properties.Resources.restart;
-            this.restartButtonn.Location = new System.Drawing.Point(840, 8);
-            this.restartButtonn.Name = "restartButtonn";
-            this.restartButtonn.Size = new System.Drawing.Size(30, 30);
-            this.restartButtonn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.restartButtonn.TabIndex = 1;
-            this.restartButtonn.TabStop = false;
             // 
             // pictureBox4
             // 
@@ -398,12 +399,12 @@
             this.Load += new System.EventHandler(this.EmployeesForm_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panelmenu.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clearButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.restartButtonn)).EndInit();
+            this.panelmenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

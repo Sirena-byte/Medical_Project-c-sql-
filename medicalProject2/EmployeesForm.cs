@@ -30,6 +30,7 @@ namespace medicalProject2
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
+            
         }
 
         private void employysButton_Click(object sender, EventArgs e)
@@ -37,7 +38,7 @@ namespace medicalProject2
             MedicalForm medicalForm = new MedicalForm();
             medicalForm.Show();
             this.Visible = false;
-
+            ClearField();
         }
 
         private void EmployeesForm_Load(object sender, EventArgs e)
@@ -108,6 +109,20 @@ namespace medicalProject2
 
             dbM.closeConnection();
 
+        }
+
+        private void NewsButton_Click(object sender, EventArgs e)
+        {
+            AddEmployeesForm addEmployeesForm = new AddEmployeesForm();
+            addEmployeesForm.Show();
+        }
+        private void ClearField()
+        {
+            firstNameField.Text = "";
+            lastNameField.Text = "";
+            surnameField.Text = "";
+            positionJobField.Text = "";
+            doctorsProfileField.Text = "";
         }
     }
 }
