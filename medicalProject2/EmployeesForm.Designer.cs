@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmployeesForm));
             this.panel2 = new System.Windows.Forms.Panel();
-            this.medicalInstField = new System.Windows.Forms.ComboBox();
             this.searchField = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.searchButton = new System.Windows.Forms.PictureBox();
@@ -37,9 +37,11 @@
             this.clearButton = new System.Windows.Forms.PictureBox();
             this.restartButtonn = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.medicalInstField = new System.Windows.Forms.ComboBox();
             this.idName = new System.Windows.Forms.Label();
             this.idField = new System.Windows.Forms.TextBox();
             this.panelmenu = new System.Windows.Forms.Panel();
+            this.exitButtom = new System.Windows.Forms.Button();
             this.exitButton = new System.Windows.Forms.Button();
             this.employysButton = new System.Windows.Forms.Button();
             this.autorizButton = new System.Windows.Forms.Button();
@@ -62,7 +64,6 @@
             this.profileField = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.placeOfWorkField = new System.Windows.Forms.ComboBox();
-            this.exitButtom = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -76,7 +77,6 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Pink;
-            this.panel2.Controls.Add(this.medicalInstField);
             this.panel2.Controls.Add(this.searchField);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.searchButton);
@@ -89,17 +89,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1172, 41);
             this.panel2.TabIndex = 91;
-            // 
-            // medicalInstField
-            // 
-            this.medicalInstField.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.medicalInstField.FormattingEnabled = true;
-            this.medicalInstField.Location = new System.Drawing.Point(434, 8);
-            this.medicalInstField.MaxDropDownItems = 80;
-            this.medicalInstField.Name = "medicalInstField";
-            this.medicalInstField.Size = new System.Drawing.Size(308, 26);
-            this.medicalInstField.TabIndex = 100;
-            this.medicalInstField.SelectedIndexChanged += new System.EventHandler(this.medicalInstField_SelectedIndexChanged);
             // 
             // searchField
             // 
@@ -114,7 +103,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(273, 8);
+            this.label7.Location = new System.Drawing.Point(345, 8);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(123, 25);
             this.label7.TabIndex = 5;
@@ -133,7 +122,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::medicalProject2.Properties.Resources.user1;
-            this.pictureBox1.Location = new System.Drawing.Point(242, 8);
+            this.pictureBox1.Location = new System.Drawing.Point(314, 8);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(25, 25);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -156,7 +145,7 @@
             this.restartButtonn.Image = global::medicalProject2.Properties.Resources.restart;
             this.restartButtonn.Location = new System.Drawing.Point(840, 8);
             this.restartButtonn.Name = "restartButtonn";
-            this.restartButtonn.Size = new System.Drawing.Size(30, 30);
+            this.restartButtonn.Size = new System.Drawing.Size(25, 25);
             this.restartButtonn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.restartButtonn.TabIndex = 1;
             this.restartButtonn.TabStop = false;
@@ -171,6 +160,17 @@
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox4.TabIndex = 70;
             this.pictureBox4.TabStop = false;
+            // 
+            // medicalInstField
+            // 
+            this.medicalInstField.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.medicalInstField.FormattingEnabled = true;
+            this.medicalInstField.Location = new System.Drawing.Point(509, 49);
+            this.medicalInstField.MaxDropDownItems = 80;
+            this.medicalInstField.Name = "medicalInstField";
+            this.medicalInstField.Size = new System.Drawing.Size(308, 26);
+            this.medicalInstField.TabIndex = 100;
+            this.medicalInstField.SelectedIndexChanged += new System.EventHandler(this.medicalInstField_SelectedIndexChanged);
             // 
             // idName
             // 
@@ -201,6 +201,17 @@
             this.panelmenu.Name = "panelmenu";
             this.panelmenu.Size = new System.Drawing.Size(1172, 41);
             this.panelmenu.TabIndex = 88;
+            // 
+            // exitButtom
+            // 
+            this.exitButtom.BackColor = System.Drawing.Color.PaleVioletRed;
+            this.exitButtom.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.exitButtom.Location = new System.Drawing.Point(1051, 3);
+            this.exitButtom.Name = "exitButtom";
+            this.exitButtom.Size = new System.Drawing.Size(75, 29);
+            this.exitButtom.TabIndex = 11;
+            this.exitButtom.Text = "Выйти";
+            this.exitButtom.UseVisualStyleBackColor = false;
             // 
             // exitButton
             // 
@@ -427,23 +438,13 @@
             this.placeOfWorkField.Size = new System.Drawing.Size(307, 26);
             this.placeOfWorkField.TabIndex = 99;
             // 
-            // exitButtom
-            // 
-            this.exitButtom.BackColor = System.Drawing.Color.PaleVioletRed;
-            this.exitButtom.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.exitButtom.Location = new System.Drawing.Point(1051, 3);
-            this.exitButtom.Name = "exitButtom";
-            this.exitButtom.Size = new System.Drawing.Size(75, 29);
-            this.exitButtom.TabIndex = 11;
-            this.exitButtom.Text = "Выйти";
-            this.exitButtom.UseVisualStyleBackColor = false;
-            // 
             // EmployeesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Pink;
             this.ClientSize = new System.Drawing.Size(1172, 636);
+            this.Controls.Add(this.medicalInstField);
             this.Controls.Add(this.placeOfWorkField);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.profileField);
@@ -467,6 +468,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "EmployeesForm";
             this.Text = "EmployeesForm";
             this.Load += new System.EventHandler(this.EmployeesForm_Load);
