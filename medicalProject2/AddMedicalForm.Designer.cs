@@ -223,6 +223,7 @@
             this.categoryField.Size = new System.Drawing.Size(253, 26);
             this.categoryField.TabIndex = 40;
             this.categoryField.ValueMember = "id_category";
+            this.categoryField.SelectedIndexChanged += new System.EventHandler(this.categoryField_SelectedIndexChanged);
             // 
             // categoryBindingSource
             // 

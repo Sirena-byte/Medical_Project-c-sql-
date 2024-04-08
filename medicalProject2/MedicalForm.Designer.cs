@@ -31,6 +31,9 @@
             this.idName = new System.Windows.Forms.Label();
             this.idField = new System.Windows.Forms.TextBox();
             this.panelmenu = new System.Windows.Forms.Panel();
+            this.exitButton = new System.Windows.Forms.Button();
+            this.employysButton = new System.Windows.Forms.Button();
+            this.registerButton = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.searchField = new System.Windows.Forms.TextBox();
             this.phoneField = new System.Windows.Forms.MaskedTextBox();
@@ -51,14 +54,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.registerButton = new System.Windows.Forms.Button();
-            this.employysButton = new System.Windows.Forms.Button();
-            this.exitButton = new System.Windows.Forms.Button();
             this.searchButton = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.clearButton = new System.Windows.Forms.PictureBox();
             this.restartButtonn = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panelmenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -83,7 +84,7 @@
             this.idField.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.idField.Location = new System.Drawing.Point(5, 127);
             this.idField.Name = "idField";
-            this.idField.Size = new System.Drawing.Size(231, 24);
+            this.idField.Size = new System.Drawing.Size(267, 24);
             this.idField.TabIndex = 67;
             // 
             // panelmenu
@@ -97,11 +98,46 @@
             this.panelmenu.Size = new System.Drawing.Size(1173, 41);
             this.panelmenu.TabIndex = 66;
             // 
+            // exitButton
+            // 
+            this.exitButton.BackColor = System.Drawing.Color.PaleVioletRed;
+            this.exitButton.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.exitButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.exitButton.Location = new System.Drawing.Point(1132, 4);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(29, 29);
+            this.exitButton.TabIndex = 10;
+            this.exitButton.Text = "X";
+            this.exitButton.UseVisualStyleBackColor = false;
+            // 
+            // employysButton
+            // 
+            this.employysButton.BackColor = System.Drawing.Color.PaleVioletRed;
+            this.employysButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.employysButton.Location = new System.Drawing.Point(13, 6);
+            this.employysButton.Name = "employysButton";
+            this.employysButton.Size = new System.Drawing.Size(90, 29);
+            this.employysButton.TabIndex = 9;
+            this.employysButton.Text = "Работники";
+            this.employysButton.UseVisualStyleBackColor = false;
+            this.employysButton.Click += new System.EventHandler(this.employysButton_Click);
+            // 
+            // registerButton
+            // 
+            this.registerButton.BackColor = System.Drawing.Color.PaleVioletRed;
+            this.registerButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.registerButton.Location = new System.Drawing.Point(1051, 3);
+            this.registerButton.Name = "registerButton";
+            this.registerButton.Size = new System.Drawing.Size(75, 29);
+            this.registerButton.TabIndex = 7;
+            this.registerButton.Text = "Войти";
+            this.registerButton.UseVisualStyleBackColor = false;
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(273, 8);
+            this.label7.Location = new System.Drawing.Point(327, 8);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(347, 25);
             this.label7.TabIndex = 5;
@@ -122,7 +158,7 @@
             this.phoneField.Location = new System.Drawing.Point(2, 321);
             this.phoneField.Mask = "+375 00 000-00-00";
             this.phoneField.Name = "phoneField";
-            this.phoneField.Size = new System.Drawing.Size(231, 24);
+            this.phoneField.Size = new System.Drawing.Size(270, 24);
             this.phoneField.TabIndex = 65;
             // 
             // supervisorField
@@ -131,7 +167,7 @@
             this.supervisorField.FormattingEnabled = true;
             this.supervisorField.Location = new System.Drawing.Point(0, 369);
             this.supervisorField.Name = "supervisorField";
-            this.supervisorField.Size = new System.Drawing.Size(231, 26);
+            this.supervisorField.Size = new System.Drawing.Size(272, 26);
             this.supervisorField.TabIndex = 64;
             // 
             // saveButton
@@ -172,7 +208,7 @@
             this.categoryField.FormattingEnabled = true;
             this.categoryField.Location = new System.Drawing.Point(2, 223);
             this.categoryField.Name = "categoryField";
-            this.categoryField.Size = new System.Drawing.Size(231, 26);
+            this.categoryField.Size = new System.Drawing.Size(270, 26);
             this.categoryField.TabIndex = 59;
             // 
             // deleteButton
@@ -188,7 +224,7 @@
             // 
             // hauseField
             // 
-            this.hauseField.Location = new System.Drawing.Point(173, 273);
+            this.hauseField.Location = new System.Drawing.Point(212, 273);
             this.hauseField.Name = "hauseField";
             this.hauseField.Size = new System.Drawing.Size(60, 22);
             this.hauseField.TabIndex = 63;
@@ -209,7 +245,7 @@
             this.streetField.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.streetField.Location = new System.Drawing.Point(2, 273);
             this.streetField.Name = "streetField";
-            this.streetField.Size = new System.Drawing.Size(165, 24);
+            this.streetField.Size = new System.Drawing.Size(204, 24);
             this.streetField.TabIndex = 62;
             // 
             // dataGridView1
@@ -218,12 +254,12 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(242, 91);
+            this.dataGridView1.Location = new System.Drawing.Point(278, 86);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(924, 536);
+            this.dataGridView1.Size = new System.Drawing.Size(895, 536);
             this.dataGridView1.TabIndex = 52;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -232,7 +268,7 @@
             this.nameField.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nameField.Location = new System.Drawing.Point(2, 175);
             this.nameField.Name = "nameField";
-            this.nameField.Size = new System.Drawing.Size(231, 24);
+            this.nameField.Size = new System.Drawing.Size(270, 24);
             this.nameField.TabIndex = 61;
             // 
             // label6
@@ -294,41 +330,6 @@
             this.panel2.Size = new System.Drawing.Size(1173, 41);
             this.panel2.TabIndex = 69;
             // 
-            // registerButton
-            // 
-            this.registerButton.BackColor = System.Drawing.Color.PaleVioletRed;
-            this.registerButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.registerButton.Location = new System.Drawing.Point(1051, 3);
-            this.registerButton.Name = "registerButton";
-            this.registerButton.Size = new System.Drawing.Size(75, 29);
-            this.registerButton.TabIndex = 7;
-            this.registerButton.Text = "Войти";
-            this.registerButton.UseVisualStyleBackColor = false;
-            // 
-            // employysButton
-            // 
-            this.employysButton.BackColor = System.Drawing.Color.PaleVioletRed;
-            this.employysButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.employysButton.Location = new System.Drawing.Point(13, 6);
-            this.employysButton.Name = "employysButton";
-            this.employysButton.Size = new System.Drawing.Size(90, 29);
-            this.employysButton.TabIndex = 9;
-            this.employysButton.Text = "Работники";
-            this.employysButton.UseVisualStyleBackColor = false;
-            this.employysButton.Click += new System.EventHandler(this.employysButton_Click);
-            // 
-            // exitButton
-            // 
-            this.exitButton.BackColor = System.Drawing.Color.PaleVioletRed;
-            this.exitButton.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.exitButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.exitButton.Location = new System.Drawing.Point(1132, 4);
-            this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(29, 29);
-            this.exitButton.TabIndex = 10;
-            this.exitButton.Text = "X";
-            this.exitButton.UseVisualStyleBackColor = false;
-            // 
             // searchButton
             // 
             this.searchButton.Image = global::medicalProject2.Properties.Resources.loupe;
@@ -342,7 +343,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::medicalProject2.Properties.Resources.hospital1;
-            this.pictureBox1.Location = new System.Drawing.Point(242, 8);
+            this.pictureBox1.Location = new System.Drawing.Point(278, 13);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(25, 25);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -381,12 +382,22 @@
             this.pictureBox4.TabIndex = 48;
             this.pictureBox4.TabStop = false;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(450, 304);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(272, 26);
+            this.comboBox1.TabIndex = 70;
+            // 
             // MedicalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Pink;
             this.ClientSize = new System.Drawing.Size(1173, 634);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.idName);
             this.Controls.Add(this.idField);
@@ -459,5 +470,6 @@
         private System.Windows.Forms.Button employysButton;
         private System.Windows.Forms.Button registerButton;
         private System.Windows.Forms.Button exitButton;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

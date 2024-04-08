@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using ComboBox = System.Windows.Forms.ComboBox;
+using System.Xml.Linq;
 
 namespace medicalProject2
 {
@@ -29,10 +30,22 @@ namespace medicalProject2
 
         private void AddMedicalForm_Load(object sender, EventArgs e)
         {
-         
-          //заполнение комбобоксов
-            LoadComboBox("SELECT id_employee,concat_ws(' ',first_name,last_name,surname) as name FROM employees", "name","id_employee",this.supervisorField);
+
+            //заполнение комбобоксов
             LoadComboBox("SELECT * FROM category", "name_category", "id_category", this.categoryField);
+            string queryProvisor;
+            if (categoryField.Text == "аптека")
+            {
+                queryProvisor = "SELECT id_employee,concat_ws(' ',first_name,last_name,surname) as name, name_position FROM employees JOIN positions_job ON employees.position_job = positions_job.id_position WHERE name_position = 'заведующий'";
+
+                LoadComboBox(queryProvisor, "name", "id_employee", this.supervisorField);
+            }
+            if(categoryField.Text == "больница" || categoryField.Text == "поликлиника")
+            {
+                queryProvisor = "SELECT id_employee,concat_ws(' ',first_name,last_name,surname) as name, name_position FROM employees JOIN positions_job ON employees.position_job = positions_job.id_position WHERE name_position = 'глав.врач'";
+                LoadComboBox(queryProvisor, "name", "id_employee", this.supervisorField);
+            }
+
             this.ClearField();
             
 
@@ -79,9 +92,9 @@ namespace medicalProject2
             var address = streetField.Text + "-" + hauseField.Text;
             var phone = phoneField.Text;
             int supervisor = (int)supervisorField.SelectedValue;
+            
 
-
-                var addQuery = $"insert into medical_inst (id_category, name_inst,phone_inst, address_inst, supervisor_id) values ('{category}','{name}','{phone}','{address}','{supervisor}')";
+            var addQuery = $"insert into medical_inst (id_category, name_inst,phone_inst, address_inst, employee_id) values ('{category}','{name}','{phone}','{address}','{supervisor}')";
                 var command = new SqlCommand(addQuery, dbM.getConnection());
                 command.ExecuteNonQuery();
                 MessageBox.Show("Запись успешно добавлена!", "Успех!", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -89,6 +102,22 @@ namespace medicalProject2
             dbM.closeConnection();
             //данные в таблице сами не обновляются
             //можно добавить окно не успеха
+        }
+
+        private void categoryField_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string queryProvisor;
+            if (categoryField.Text == "аптека")
+            {
+                queryProvisor = "SELECT id_employee,concat_ws(' ',first_name,last_name,surname) as name, name_position FROM employees JOIN positions_job ON employees.position_job = positions_job.id_position WHERE name_position = 'санитар'";
+
+                LoadComboBox(queryProvisor, "name", "id_employee", this.supervisorField);
+            }
+            if (categoryField.Text == "больница" || categoryField.Text == "поликлиника")
+            {
+                queryProvisor = "SELECT id_employee,concat_ws(' ',first_name,last_name,surname) as name, name_position FROM employees JOIN positions_job ON employees.position_job = positions_job.id_position WHERE name_position = 'врач'";
+                LoadComboBox(queryProvisor, "name", "id_employee", this.supervisorField);
+            }
         }
     }
 }

@@ -40,8 +40,8 @@ namespace medicalProject2
         {
             CreateColumn();
             RefreshDataGrid(dataGridView1);
-
-            LoadComboBox("SELECT id_employee,concat_ws(' ',first_name,last_name,surname) as name FROM employees", "name", "id_employee", this.supervisorField);
+            
+            //LoadComboBox("SELECT id_employee,concat_ws(' ',first_name,last_name,surname) as name FROM employees", "name", "id_employee", this.supervisorField);
             LoadComboBox("SELECT * FROM category", "name_category", "id_category", this.categoryField);
 
             this.ClearField();
@@ -54,21 +54,21 @@ namespace medicalProject2
             dataGridView1.Columns.Add("name_inst", "Название");
             dataGridView1.Columns.Add("address_inst", "Адрес");
             dataGridView1.Columns.Add("phone_num", "Телефон");
-            dataGridView1.Columns.Add("first_name", "Руководитель");
+            //dataGridView1.Columns.Add("first_name", "Руководитель");
             dataGridView1.Columns.Add("IsNew", String.Empty);
             dataGridView1.Columns[0].Visible = false;
             dataGridView1.Columns[1].Width = 90;
             dataGridView1.Columns[2].Width = 250;
             dataGridView1.Columns[3].Width = 120;
             dataGridView1.Columns[4].Width = 120;
-            dataGridView1.Columns[5].Width = 280;
-            dataGridView1.Columns[6].Visible = false;
+            //dataGridView1.Columns[5].Width = 280;
+            dataGridView1.Columns[5].Visible = false;
 
         }
 
         protected void ReadSingleRow(DataGridView dgw, IDataRecord record)
         {
-            dgw.Rows.Add(record.GetInt32(0), record.GetString(1), record.GetString(2), record.GetString(3), record.GetString(4), (record.GetString(5) + " " + record.GetString(6) + " " + record.GetString(7)), RowState.ModifietedNew);
+            dgw.Rows.Add(record.GetInt32(0), record.GetString(1), record.GetString(2), record.GetString(3), record.GetString(4), RowState.ModifietedNew);
         }
         //метод очищает поля
         private void ClearField()
@@ -85,7 +85,7 @@ namespace medicalProject2
         private void RefreshDataGrid(DataGridView dgw)
         {
             dgw.Rows.Clear();
-            string queryString = $"SELECT id_inst,name_category,name_inst,address_inst,phone_inst,first_name,last_name,surname FROM medical_inst JOIN category ON medical_inst.id_category = category.id_category JOIN employees ON medical_inst.supervisor_id = employees.id_employee";
+            string queryString = $"SELECT id_inst,name_category,name_inst,address_inst,phone_inst FROM medical_inst JOIN category ON medical_inst.id_category = category.id_category";
 
             SqlCommand command = new SqlCommand(queryString, dbM.getConnection());
             dbM.openConnection();
@@ -127,7 +127,7 @@ namespace medicalProject2
                 streetField.Text = street;
 
                 phoneField.Text = row.Cells[4].Value.ToString();
-                supervisorField.Text = row.Cells[5].Value.ToString();
+               // supervisorField.Text = row.Cells[5].Value.ToString();
             }
         }
 
@@ -141,15 +141,15 @@ namespace medicalProject2
             var category = categoryField.Text;
             var address = streetField.Text + "-" + hauseField.Text;
             var phone = phoneField.Text;
-            var supervisor = supervisorField.Text;
+            //var supervisor = supervisorField.Text;
 
             //проверяем не пустая ли строка с определенным индексом в нулевом столбце
             if (dataGridView1.Rows[selectedRovIndex].Cells[0].Value.ToString() != string.Empty)
             {
                 //проверяем тип вводимых данных, чтобы не было конфликта с базой данных
                 //присваиваются значения текстбоксов нижней формы строке , то есть меняем данные в грид таблице
-                dataGridView1.Rows[selectedRovIndex].SetValues(id, category, name, address, phone, supervisor);//потом вернуть
-                dataGridView1.Rows[selectedRovIndex].Cells[6].Value = RowState.Modifieted;
+                dataGridView1.Rows[selectedRovIndex].SetValues(id, category, name, address, phone);//потом вернуть
+                dataGridView1.Rows[selectedRovIndex].Cells[5].Value = RowState.Modifieted;
 
             }
         }
@@ -178,7 +178,7 @@ namespace medicalProject2
         {
             dgw.Rows.Clear();
 
-            string searchString = $"SELECT id_inst,name_category,name_inst,address_inst,phone_inst,first_name,last_name,surname FROM medical_inst JOIN category ON medical_inst.id_category = category.id_category JOIN employees ON medical_inst.supervisor_id = employees.id_employee where concat(id_inst,name_category,address_inst,phone_inst,first_name)like '%" + searchField.Text + "%'";
+            string searchString = $" SELECT id_inst,name_category,name_inst,address_inst,phone_inst FROM medical_inst JOIN category ON medical_inst.id_category = category.id_category where concat(id_inst,name_category,name_inst,address_inst,phone_inst)like '%" + searchField.Text + "%'";
 
             SqlCommand command = new SqlCommand(searchString, dbM.getConnection());
 
@@ -208,7 +208,7 @@ namespace medicalProject2
 
             if (dataGridView1.Rows[index].Cells[0].Value.ToString() != string.Empty)//есла ячейка нулевая, значит это айдишник и мы берем это значение, тогда
             {
-                dataGridView1.Rows[index].Cells[6].Value = RowState.Deleted;//присваиваем индекс, который находится в крайней ячейке( и если он не нулевой, то сть есть что удалять)
+                dataGridView1.Rows[index].Cells[5].Value = RowState.Deleted;//присваиваем индекс, который находится в крайней ячейке( и если он не нулевой, то сть есть что удалять)
             }
             return;
         }
@@ -219,7 +219,7 @@ namespace medicalProject2
 
             for (int index = 0; index < dataGridView1.Rows.Count; index++)
             {
-                var rowState = (RowState)dataGridView1.Rows[index].Cells[6].Value;//передаем поле, где находится индекс
+                var rowState = (RowState)dataGridView1.Rows[index].Cells[5].Value;//передаем поле, где находится индекс
 
                 if (rowState == RowState.Existed)
                     continue;
@@ -243,12 +243,12 @@ namespace medicalProject2
                     var name = dataGridView1.Rows[index].Cells[2].Value.ToString();
                     var address = dataGridView1.Rows[index].Cells[3].Value.ToString();
                     var phone = dataGridView1.Rows[index].Cells[4].Value.ToString();
-                    var supervisor = dataGridView1.Rows[index].Cells[5].Value.ToString();
-                    string[] emp = supervisor.Split(' ');
-                    string superv = emp[0];
+                    //var supervisor = dataGridView1.Rows[index].Cells[5].Value.ToString();
+                    /*string[] emp = supervisor.Split(' ');
+                    string superv = emp[0];*/
 
                     //заносим измененные данные в базу данных
-                    var changeQuery = $"update medical_inst set id_category = (select id_category from  category where name_category = '{category}'),name_inst  = '{name}',address_inst = '{address}', phone_inst = '{phone}', supervisor_id = (select id_employee from employees where first_name = '{superv}' )where id_inst = '{id}'";
+                    var changeQuery = $"update medical_inst set id_category = (select id_category from  category where name_category = '{category}'),name_inst  = '{name}',address_inst = '{address}', phone_inst = '{phone}' )where id_inst = '{id}'";
 
                     var command = new SqlCommand(changeQuery, dbM.getConnection());
                     command.ExecuteNonQuery();

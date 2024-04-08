@@ -40,13 +40,15 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lastNameFieeld = new System.Windows.Forms.TextBox();
-            this.surnameField = new System.Windows.Forms.TextBox();
             this.clearButton = new System.Windows.Forms.PictureBox();
             this.infoButton = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lastNameFieeld = new System.Windows.Forms.TextBox();
+            this.surnameField = new System.Windows.Forms.TextBox();
             this.exitButton = new System.Windows.Forms.Button();
+            this.placeOfWorkField = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clearButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.infoButton)).BeginInit();
@@ -61,6 +63,7 @@
             this.profesionField.Name = "profesionField";
             this.profesionField.Size = new System.Drawing.Size(253, 26);
             this.profesionField.TabIndex = 56;
+            this.profesionField.SelectedIndexChanged += new System.EventHandler(this.profesionField_SelectedIndexChanged);
             // 
             // profileField
             // 
@@ -171,32 +174,6 @@
             this.panel1.Size = new System.Drawing.Size(585, 63);
             this.panel1.TabIndex = 44;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(145, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(242, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Добавление сотрудника:";
-            // 
-            // lastNameFieeld
-            // 
-            this.lastNameFieeld.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lastNameFieeld.Location = new System.Drawing.Point(206, 196);
-            this.lastNameFieeld.Name = "lastNameFieeld";
-            this.lastNameFieeld.Size = new System.Drawing.Size(253, 24);
-            this.lastNameFieeld.TabIndex = 57;
-            // 
-            // surnameField
-            // 
-            this.surnameField.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.surnameField.Location = new System.Drawing.Point(206, 235);
-            this.surnameField.Name = "surnameField";
-            this.surnameField.Size = new System.Drawing.Size(253, 24);
-            this.surnameField.TabIndex = 58;
-            // 
             // clearButton
             // 
             this.clearButton.Image = global::medicalProject2.Properties.Resources.clear;
@@ -217,6 +194,16 @@
             this.infoButton.TabIndex = 1;
             this.infoButton.TabStop = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(145, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(242, 20);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Добавление сотрудника:";
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::medicalProject2.Properties.Resources.user2;
@@ -226,6 +213,22 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 26;
             this.pictureBox1.TabStop = false;
+            // 
+            // lastNameFieeld
+            // 
+            this.lastNameFieeld.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lastNameFieeld.Location = new System.Drawing.Point(206, 196);
+            this.lastNameFieeld.Name = "lastNameFieeld";
+            this.lastNameFieeld.Size = new System.Drawing.Size(253, 24);
+            this.lastNameFieeld.TabIndex = 57;
+            // 
+            // surnameField
+            // 
+            this.surnameField.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.surnameField.Location = new System.Drawing.Point(206, 235);
+            this.surnameField.Name = "surnameField";
+            this.surnameField.Size = new System.Drawing.Size(253, 24);
+            this.surnameField.TabIndex = 58;
             // 
             // exitButton
             // 
@@ -239,11 +242,32 @@
             this.exitButton.Text = "X";
             this.exitButton.UseVisualStyleBackColor = false;
             // 
+            // placeOfWorkField
+            // 
+            this.placeOfWorkField.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.placeOfWorkField.FormattingEnabled = true;
+            this.placeOfWorkField.Location = new System.Drawing.Point(206, 122);
+            this.placeOfWorkField.Name = "placeOfWorkField";
+            this.placeOfWorkField.Size = new System.Drawing.Size(253, 26);
+            this.placeOfWorkField.TabIndex = 60;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.Location = new System.Drawing.Point(86, 125);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(113, 18);
+            this.label9.TabIndex = 61;
+            this.label9.Text = "Место работы:";
+            // 
             // AddEmployeesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(609, 450);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.placeOfWorkField);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.surnameField);
             this.Controls.Add(this.lastNameFieeld);
@@ -293,5 +317,7 @@
         private System.Windows.Forms.TextBox lastNameFieeld;
         private System.Windows.Forms.TextBox surnameField;
         private System.Windows.Forms.Button exitButton;
+        private System.Windows.Forms.ComboBox placeOfWorkField;
+        private System.Windows.Forms.Label label9;
     }
 }
