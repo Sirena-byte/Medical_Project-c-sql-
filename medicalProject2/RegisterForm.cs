@@ -11,11 +11,12 @@ using System.Data.SqlClient;
 
 namespace medicalProject2
 {
+    
     public partial class RegisterForm : Form
     {
-        DB db = new DB();
-       
-        
+        MedicalDB dbM = new MedicalDB();
+
+
         public RegisterForm()
         {
             InitializeComponent();
@@ -31,10 +32,10 @@ namespace medicalProject2
             loginField.MaxLength = 50;
         }
 
-        private void signUpButton_Click(object sender, EventArgs e)
+        /*private void signUpButton_Click(object sender, EventArgs e)
         {
 
-            db.openConnection();
+            dbM.openConnection();
             var loginUser = loginField.Text;
             var passwordUser = passwordField.Text;
 
@@ -42,15 +43,13 @@ namespace medicalProject2
             {
 
                 string queryString = $"insert into register(login_user,password_user) values ('{loginUser}', '{passwordUser}')";
-                SqlCommand command = new SqlCommand(queryString, db.getConnection());
+                SqlCommand command = new SqlCommand(queryString, dbM.getConnection());
                 
                 if (command.ExecuteNonQuery() == 1)
                 {
                     MessageBox.Show("Аккаунт успешно создан!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    AutorizForm form = new AutorizForm();
                     this.Hide();
-                    form.ShowDialog();
-                    this.Show();
+
                 }
                 else
                 {
@@ -58,12 +57,12 @@ namespace medicalProject2
                 }
 
             }
-            db.closeConnection();
-        }  
+            dbM.closeConnection();
+        }  */
         
-        private Boolean checkUser()
+        public Boolean checkUser()
         {
-            DB db = new DB();
+            MedicalDB dbM = new MedicalDB();
             var loginUser = loginField.Text;
             var passwordUser = passwordField.Text;
 
@@ -72,7 +71,7 @@ namespace medicalProject2
 
             string queryString = $"select id_user,login_user,password_user from register where login_user ='{loginUser}'";
 
-            SqlCommand command = new SqlCommand(queryString, db.getConnection());
+            SqlCommand command = new SqlCommand(queryString, dbM.getConnection());
 
             adapter.SelectCommand = command;
             adapter.Fill(table);
@@ -80,14 +79,15 @@ namespace medicalProject2
             if (table.Rows.Count > 0)
             {
                 MessageBox.Show("Такой аккаунт уже создан!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                db.closeConnection();
-                return true; 
+                dbM.closeConnection();
+                return true;  
             }
             else
             {
-                db.closeConnection();
+                dbM.closeConnection();
                 return false;
             }
+            
         }
     }
 }

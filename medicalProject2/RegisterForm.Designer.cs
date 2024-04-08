@@ -74,7 +74,7 @@
             this.signUpButton.TabIndex = 5;
             this.signUpButton.Text = "Создать аккаунт";
             this.signUpButton.UseVisualStyleBackColor = true;
-            this.signUpButton.Click += new System.EventHandler(this.signUpButton_Click);
+            //this.signUpButton.Click += new System.EventHandler(this.signUpButton_Click);
             // 
             // loginField
             // 

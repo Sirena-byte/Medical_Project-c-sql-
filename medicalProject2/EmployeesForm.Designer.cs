@@ -29,18 +29,20 @@
         private void InitializeComponent()
         {
             this.panel2 = new System.Windows.Forms.Panel();
+            this.medicalInstField = new System.Windows.Forms.ComboBox();
             this.searchField = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.searchButton = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.clearButton = new System.Windows.Forms.PictureBox();
             this.restartButtonn = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.idName = new System.Windows.Forms.Label();
             this.idField = new System.Windows.Forms.TextBox();
             this.panelmenu = new System.Windows.Forms.Panel();
             this.exitButton = new System.Windows.Forms.Button();
             this.employysButton = new System.Windows.Forms.Button();
-            this.registerButton = new System.Windows.Forms.Button();
+            this.autorizButton = new System.Windows.Forms.Button();
             this.doctorsProfileField = new System.Windows.Forms.ComboBox();
             this.saveButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -53,7 +55,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.surnameField = new System.Windows.Forms.TextBox();
             this.lastNameField = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -61,15 +62,15 @@
             this.profileField = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.placeOfWorkField = new System.Windows.Forms.ComboBox();
-            this.medicalInstField = new System.Windows.Forms.ComboBox();
+            this.exitButtom = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clearButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.restartButtonn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.panelmenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
@@ -88,6 +89,17 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1172, 41);
             this.panel2.TabIndex = 91;
+            // 
+            // medicalInstField
+            // 
+            this.medicalInstField.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.medicalInstField.FormattingEnabled = true;
+            this.medicalInstField.Location = new System.Drawing.Point(434, 8);
+            this.medicalInstField.MaxDropDownItems = 80;
+            this.medicalInstField.Name = "medicalInstField";
+            this.medicalInstField.Size = new System.Drawing.Size(308, 26);
+            this.medicalInstField.TabIndex = 100;
+            this.medicalInstField.SelectedIndexChanged += new System.EventHandler(this.medicalInstField_SelectedIndexChanged);
             // 
             // searchField
             // 
@@ -150,6 +162,16 @@
             this.restartButtonn.TabStop = false;
             this.restartButtonn.Click += new System.EventHandler(this.restartButtonn_Click);
             // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::medicalProject2.Properties.Resources.record;
+            this.pictureBox4.Location = new System.Drawing.Point(4, 6);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox4.TabIndex = 70;
+            this.pictureBox4.TabStop = false;
+            // 
             // idName
             // 
             this.idName.AutoSize = true;
@@ -170,9 +192,10 @@
             // panelmenu
             // 
             this.panelmenu.BackColor = System.Drawing.Color.Pink;
+            this.panelmenu.Controls.Add(this.exitButtom);
             this.panelmenu.Controls.Add(this.exitButton);
             this.panelmenu.Controls.Add(this.employysButton);
-            this.panelmenu.Controls.Add(this.registerButton);
+            this.panelmenu.Controls.Add(this.autorizButton);
             this.panelmenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelmenu.Location = new System.Drawing.Point(0, 0);
             this.panelmenu.Name = "panelmenu";
@@ -203,16 +226,17 @@
             this.employysButton.UseVisualStyleBackColor = false;
             this.employysButton.Click += new System.EventHandler(this.employysButton_Click);
             // 
-            // registerButton
+            // autorizButton
             // 
-            this.registerButton.BackColor = System.Drawing.Color.PaleVioletRed;
-            this.registerButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.registerButton.Location = new System.Drawing.Point(1051, 3);
-            this.registerButton.Name = "registerButton";
-            this.registerButton.Size = new System.Drawing.Size(75, 29);
-            this.registerButton.TabIndex = 7;
-            this.registerButton.Text = "Войти";
-            this.registerButton.UseVisualStyleBackColor = false;
+            this.autorizButton.BackColor = System.Drawing.Color.PaleVioletRed;
+            this.autorizButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.autorizButton.Location = new System.Drawing.Point(1051, 3);
+            this.autorizButton.Name = "autorizButton";
+            this.autorizButton.Size = new System.Drawing.Size(75, 29);
+            this.autorizButton.TabIndex = 7;
+            this.autorizButton.Text = "Войти";
+            this.autorizButton.UseVisualStyleBackColor = false;
+            this.autorizButton.Click += new System.EventHandler(this.registerButton_Click);
             // 
             // doctorsProfileField
             // 
@@ -340,16 +364,6 @@
             this.label3.TabIndex = 77;
             this.label3.Text = "Фамилия:";
             // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = global::medicalProject2.Properties.Resources.record;
-            this.pictureBox4.Location = new System.Drawing.Point(4, 6);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(30, 30);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox4.TabIndex = 70;
-            this.pictureBox4.TabStop = false;
-            // 
             // surnameField
             // 
             this.surnameField.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -413,16 +427,16 @@
             this.placeOfWorkField.Size = new System.Drawing.Size(307, 26);
             this.placeOfWorkField.TabIndex = 99;
             // 
-            // medicalInstField
+            // exitButtom
             // 
-            this.medicalInstField.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.medicalInstField.FormattingEnabled = true;
-            this.medicalInstField.Location = new System.Drawing.Point(434, 8);
-            this.medicalInstField.MaxDropDownItems = 80;
-            this.medicalInstField.Name = "medicalInstField";
-            this.medicalInstField.Size = new System.Drawing.Size(308, 26);
-            this.medicalInstField.TabIndex = 100;
-            this.medicalInstField.SelectedIndexChanged += new System.EventHandler(this.medicalInstField_SelectedIndexChanged);
+            this.exitButtom.BackColor = System.Drawing.Color.PaleVioletRed;
+            this.exitButtom.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.exitButtom.Location = new System.Drawing.Point(1051, 3);
+            this.exitButtom.Name = "exitButtom";
+            this.exitButtom.Size = new System.Drawing.Size(75, 29);
+            this.exitButtom.TabIndex = 11;
+            this.exitButtom.Text = "Выйти";
+            this.exitButtom.UseVisualStyleBackColor = false;
             // 
             // EmployeesForm
             // 
@@ -462,9 +476,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clearButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.restartButtonn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.panelmenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -484,7 +498,7 @@
         private System.Windows.Forms.Panel panelmenu;
         private System.Windows.Forms.Button exitButton;
         private System.Windows.Forms.Button employysButton;
-        private System.Windows.Forms.Button registerButton;
+        private System.Windows.Forms.Button autorizButton;
         private System.Windows.Forms.ComboBox doctorsProfileField;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Label label1;
@@ -506,5 +520,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox placeOfWorkField;
         private System.Windows.Forms.ComboBox medicalInstField;
+        private System.Windows.Forms.Button exitButtom;
     }
 }

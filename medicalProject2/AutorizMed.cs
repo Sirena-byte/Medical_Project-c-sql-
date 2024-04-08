@@ -2,25 +2,24 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 
 namespace medicalProject2
 {
-    public partial class AutorizForm : Form
+    public partial class AutorizMed : Form
     {
-       
-        public AutorizForm()
+        public AutorizMed()
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
         }
 
-        private void AutorizForm_Load(object sender, EventArgs e)
+        private void AutorizMed_Load(object sender, EventArgs e)
         {
             closePass.Visible = false;
             passwordField.MaxLength = 50;
@@ -29,7 +28,7 @@ namespace medicalProject2
 
         private void autorizButton_Click(object sender, EventArgs e)
         {
-            DB db = new DB();
+            MedicalDB dbM = new MedicalDB();
             var loginUser = loginField.Text;
             var passwordUser = passwordField.Text;
 
@@ -38,15 +37,16 @@ namespace medicalProject2
 
             string querySrting = $"select id_user,login_user,password_user from register where login_user = '{loginUser}' and password_user ='{passwordUser}'";
 
-            SqlCommand command = new SqlCommand(querySrting, db.getConnection());
+            SqlCommand command = new SqlCommand(querySrting, dbM.getConnection());
 
             adapter.SelectCommand = command;
             adapter.Fill(table);
 
-            if(table.Rows.Count == 1)
+            if (table.Rows.Count == 1)
             {
                 MessageBox.Show("Вы успешно вошли!", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                GridForm form = new GridForm();
+                //GridForm form = new GridForm();
+                EmployeesForm form = new EmployeesForm();
                 this.Hide();
                 form.ShowDialog();
                 this.Show();
@@ -55,28 +55,13 @@ namespace medicalProject2
             {
                 MessageBox.Show("Такого аккаунта не существует!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            db.closeConnection();
+            dbM.closeConnection();
         }
-        //переход на форму регистрации
-        private void linkLabelRegister_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            RegisterForm regForm = new RegisterForm();
-            this.Hide();
-            regForm.ShowDialog();
-            this.Show();
-        }
-        //очистка формы
+
         private void pictureBox3_Click(object sender, EventArgs e)
         {
             passwordField.Text = "";
             loginField.Text = "";
-        }
-
-        private void openPass_Click(object sender, EventArgs e)
-        {
-            passwordField.UseSystemPasswordChar = true;
-            openPass.Visible = false;
-            closePass.Visible = true;
         }
 
         private void closePass_Click(object sender, EventArgs e)
@@ -84,6 +69,13 @@ namespace medicalProject2
             passwordField.UseSystemPasswordChar = false;
             openPass.Visible = true;
             closePass.Visible = false;
+        }
+
+        private void openPass_Click(object sender, EventArgs e)
+        {
+            passwordField.UseSystemPasswordChar = true;
+            openPass.Visible = false;
+            closePass.Visible = true;
         }
     }
 }

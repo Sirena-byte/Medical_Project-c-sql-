@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace medicalProject2
 {
     public partial class EmployeesForm : Form
@@ -32,8 +33,9 @@ namespace medicalProject2
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
-
+            exitButtom.Visible = false;
             ClearField();
+            
         }
 
         private void employysButton_Click(object sender, EventArgs e)
@@ -137,6 +139,7 @@ namespace medicalProject2
             positionJobField.Text = "";
             profileField.Text = "";
             placeOfWorkField.Text = "";
+            medicalInstField.Text = "Все организации";
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -171,7 +174,7 @@ namespace medicalProject2
         }
 
         private void positionJobField_SelectedIndexChanged(object sender, EventArgs e)
-        {/*
+        {
             if (positionJobField.SelectedValue.ToString() == "2")
             {
                 profileField.Visible = true;
@@ -184,7 +187,7 @@ namespace medicalProject2
                 profileField.Visible = false;
                 label4.Visible = false;
                 //MessageBox.Show(profesionField.SelectedValue.ToString());//выводит индекс
-            }*/
+            }
             
         }
 
@@ -301,7 +304,7 @@ namespace medicalProject2
         private void Search(DataGridView dgw)
         {
             dgw.Rows.Clear();
-
+            
             string searchString = $"SELECT id_employee,first_name,last_name,surname,name_position,profile_name, name_inst FROM employees JOIN doctors_profiles ON employees.doctor_profile = doctors_profiles.id_profile JOIN positions_job ON employees.position_job = positions_job.id_position JOIN medical_inst ON employees.place_of_work = medical_inst.id_inst where concat(id_employee,first_name,last_name,surname,name_position,profile_name,name_inst)like '%" + searchField.Text + "%'";
 
             SqlCommand command = new SqlCommand(searchString, dbM.getConnection());
@@ -333,10 +336,15 @@ namespace medicalProject2
         private void SearchMedical(DataGridView dgw)
         {
             dgw.Rows.Clear();
-
+            //MessageBox.Show(medicalInstField.Text); ;//выводит индекс
             var medical = medicalInstField.Text;
-            string sqlString = $"SELECT id_employee,first_name,last_name,surname,name_position,profile_name, name_inst FROM employees JOIN doctors_profiles ON employees.doctor_profile = doctors_profiles.id_profile JOIN positions_job ON employees.position_job = positions_job.id_position JOIN medical_inst ON employees.place_of_work = medical_inst.id_inst where medical_inst.name_inst = '{medical}'";
+            string sqlString;
+            sqlString = $"SELECT id_employee,first_name,last_name,surname,name_position,profile_name, name_inst FROM employees JOIN doctors_profiles ON employees.doctor_profile = doctors_profiles.id_profile JOIN positions_job ON employees.position_job = positions_job.id_position JOIN medical_inst ON employees.place_of_work = medical_inst.id_inst ";
 
+            if (medical != "Все организации")
+            {
+                sqlString = $"SELECT id_employee,first_name,last_name,surname,name_position,profile_name, name_inst FROM employees JOIN doctors_profiles ON employees.doctor_profile = doctors_profiles.id_profile JOIN positions_job ON employees.position_job = positions_job.id_position JOIN medical_inst ON employees.place_of_work = medical_inst.id_inst where medical_inst.name_inst = '{medical}'";
+            }
             SqlCommand command = new SqlCommand(sqlString, dbM.getConnection());
 
             dbM.openConnection();
@@ -349,6 +357,25 @@ namespace medicalProject2
             }
             reader.Close();
             dbM.closeConnection();
+        }
+
+        private void registerButton_Click(object sender, EventArgs e)
+        {
+            AutorizMed autoriz = new AutorizMed();
+            autoriz.Show();
+            
+        }
+        private void checkRegister(bool register)
+        {
+            if (register)
+            {
+                MessageBox.Show("Успешно", "");
+               
+            }
+            else
+            {
+                MessageBox.Show("не успешно!", "");
+            }
         }
     }
 }

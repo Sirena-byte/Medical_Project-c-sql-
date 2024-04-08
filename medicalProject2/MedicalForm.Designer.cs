@@ -59,7 +59,6 @@
             this.clearButton = new System.Windows.Forms.PictureBox();
             this.restartButtonn = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panelmenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -382,22 +381,12 @@
             this.pictureBox4.TabIndex = 48;
             this.pictureBox4.TabStop = false;
             // 
-            // comboBox1
-            // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(450, 304);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(272, 26);
-            this.comboBox1.TabIndex = 70;
-            // 
             // MedicalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Pink;
             this.ClientSize = new System.Drawing.Size(1173, 634);
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.idName);
             this.Controls.Add(this.idField);
@@ -470,6 +459,5 @@
         private System.Windows.Forms.Button employysButton;
         private System.Windows.Forms.Button registerButton;
         private System.Windows.Forms.Button exitButton;
-        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
