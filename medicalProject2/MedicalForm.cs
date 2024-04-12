@@ -57,10 +57,10 @@ namespace medicalProject2
             //dataGridView1.Columns.Add("first_name", "Руководитель");
             dataGridView1.Columns.Add("IsNew", String.Empty);
             dataGridView1.Columns[0].Visible = false;
-            dataGridView1.Columns[1].Width = 90;
-            dataGridView1.Columns[2].Width = 250;
-            dataGridView1.Columns[3].Width = 120;
-            dataGridView1.Columns[4].Width = 120;
+            dataGridView1.Columns[1].Width = 170;
+            dataGridView1.Columns[2].Width = 400;
+            dataGridView1.Columns[3].Width = 250;
+            dataGridView1.Columns[4].Width = 250;
             //dataGridView1.Columns[5].Width = 280;
             dataGridView1.Columns[5].Visible = false;
 
@@ -297,6 +297,16 @@ namespace medicalProject2
             EmployeesForm employees = new EmployeesForm();
             employees.Show();
             this.Visible = false;
+        }
+
+        private void hauseField_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void supervisorField_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

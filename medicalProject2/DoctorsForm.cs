@@ -232,7 +232,7 @@ namespace medicalProject2
 
             dataGridViewCard.Columns[0].Width = 100;
             dataGridViewCard.Columns[1].Width = 100; ;
-            dataGridViewCard.Columns[2].Width = 200;
+            dataGridViewCard.Columns[2].Width = 120;
             dataGridViewCard.Columns[3].Width = 130;
             dataGridViewCard.Columns[4].Visible = false;
             dataGridViewCard.Columns[5].Visible = false;

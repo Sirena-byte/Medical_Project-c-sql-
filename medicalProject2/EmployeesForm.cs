@@ -71,9 +71,9 @@ namespace medicalProject2
             dataGridView1.Columns.Add("IsNew", String.Empty);
             dataGridView1.Columns[0].Visible = false;
             dataGridView1.Columns[1].Width = 290;
-            dataGridView1.Columns[2].Width = 150;
-            dataGridView1.Columns[3].Width = 120;
-            dataGridView1.Columns[4].Width = 250;
+            dataGridView1.Columns[2].Width = 250;
+            dataGridView1.Columns[3].Width = 220;
+            dataGridView1.Columns[4].Width = 350;
             dataGridView1.Columns[5].Visible = false;
 
         }

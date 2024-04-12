@@ -3,7 +3,6 @@ D:\medicalProject2\medicalProject2\bin\Debug\medicalProject2.exe
 D:\medicalProject2\medicalProject2\bin\Debug\medicalProject2.pdb
 D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.csproj.AssemblyReference.cache
 D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.csproj.SuggestedBindingRedirects.cache
-D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.RegisterForm.resources
 D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.Properties.Resources.resources
 D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.csproj.GenerateResource.cache
 D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.csproj.CoreCompileInputs.cache
@@ -15,4 +14,3 @@ D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.EmployeesForm.resou
 D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.AddEmployeesForm.resources
 D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.AutorizMed.resources
 D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.DoctorsForm.resources
-D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.RegisterPatientForm.resources

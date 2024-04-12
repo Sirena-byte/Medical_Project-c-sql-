@@ -43,11 +43,9 @@
             this.clearButton = new System.Windows.Forms.PictureBox();
             this.infoButton = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.categoryField = new System.Windows.Forms.ComboBox();
             this.categoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.medical_project_DBDataSet = new medicalProject2.medical_project_DBDataSet();
-            this.supervisorField = new System.Windows.Forms.ComboBox();
             this.employeesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.medicalprojectDBDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.hauseField = new System.Windows.Forms.TextBox();
@@ -55,6 +53,8 @@
             this.categoryBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.employeesTableAdapter = new medicalProject2.medical_project_DBDataSetTableAdapters.employeesTableAdapter();
             this.phoneField = new System.Windows.Forms.MaskedTextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.supervisorField = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clearButton)).BeginInit();
@@ -202,16 +202,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Добавление организации:";
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label8.Location = new System.Drawing.Point(125, 278);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(112, 18);
-            this.label8.TabIndex = 39;
-            this.label8.Text = "Руководитель:";
-            // 
             // categoryField
             // 
             this.categoryField.DataSource = this.categoryBindingSource;
@@ -234,15 +224,6 @@
             // 
             this.medical_project_DBDataSet.DataSetName = "medical_project_DBDataSet";
             this.medical_project_DBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // supervisorField
-            // 
-            this.supervisorField.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.supervisorField.FormattingEnabled = true;
-            this.supervisorField.Location = new System.Drawing.Point(243, 275);
-            this.supervisorField.Name = "supervisorField";
-            this.supervisorField.Size = new System.Drawing.Size(253, 26);
-            this.supervisorField.TabIndex = 41;
             // 
             // employeesBindingSource
             // 
@@ -283,6 +264,25 @@
             this.phoneField.Name = "phoneField";
             this.phoneField.Size = new System.Drawing.Size(253, 24);
             this.phoneField.TabIndex = 43;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label8.Location = new System.Drawing.Point(125, 278);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(112, 18);
+            this.label8.TabIndex = 39;
+            this.label8.Text = "Руководитель:";
+            // 
+            // supervisorField
+            // 
+            this.supervisorField.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.supervisorField.FormattingEnabled = true;
+            this.supervisorField.Location = new System.Drawing.Point(243, 275);
+            this.supervisorField.Name = "supervisorField";
+            this.supervisorField.Size = new System.Drawing.Size(253, 26);
+            this.supervisorField.TabIndex = 41;
             // 
             // AddMedicalForm
             // 
@@ -339,9 +339,7 @@
         private System.Windows.Forms.PictureBox clearButton;
         private System.Windows.Forms.PictureBox infoButton;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox categoryField;
-        private System.Windows.Forms.ComboBox supervisorField;
         private System.Windows.Forms.TextBox hauseField;
         private medical_project_DBDataSet medical_project_DBDataSet;
         private System.Windows.Forms.BindingSource categoryBindingSource;
@@ -351,5 +349,7 @@
         private System.Windows.Forms.BindingSource employeesBindingSource;
         private medical_project_DBDataSetTableAdapters.employeesTableAdapter employeesTableAdapter;
         private System.Windows.Forms.MaskedTextBox phoneField;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox supervisorField;
     }
 }
