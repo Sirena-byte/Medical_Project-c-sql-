@@ -15,3 +15,4 @@ D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.EmployeesForm.resou
 D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.AddEmployeesForm.resources
 D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.AutorizMed.resources
 D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.DoctorsForm.resources
+D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.RegisterPatientForm.resources

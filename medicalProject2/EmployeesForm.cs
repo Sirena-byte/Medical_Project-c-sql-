@@ -89,8 +89,6 @@ namespace medicalProject2
         private void RefreshDataGrid(DataGridView dgw)
         {
             dgw.Rows.Clear();
-            /*string queryString = $" SELECT id_employee, first_name, last_name, surname, name_position,profile_name FROM employees JOIN positions_job ON employees.position_job = positions_job.id_position JOIN doctors_profiles ON employees.doctor_profile = doctors_profiles.id_profile";
-*/
 
             string queryString = "SELECT id_employee, first_name, last_name, surname, name_position,profile_name, name_inst FROM employees JOIN positions_job ON employees.position_job = positions_job.id_position JOIN doctors_profiles ON employees.doctor_profile = doctors_profiles.id_profile JOIN medical_inst ON employees.place_of_work = medical_inst.id_inst ";
             SqlCommand command = new SqlCommand(queryString, dbM.getConnection());
