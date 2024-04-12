@@ -105,6 +105,9 @@
     <EmbeddedResource Include="AddMedicalForm.resx">
       <DependentUpon>AddMedicalForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AddPatientsForm.resx">
+      <DependentUpon>AddPatientsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AutorizMed.resx">
       <DependentUpon>AutorizMed.cs</DependentUpon>
     </EmbeddedResource>

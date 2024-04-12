@@ -32,11 +32,11 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.medicalInstField = new System.Windows.Forms.ComboBox();
             this.searchField = new System.Windows.Forms.TextBox();
+            this.restartButtonn = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
             this.searchButton = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.clearButton = new System.Windows.Forms.PictureBox();
-            this.restartButtonn = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.idName = new System.Windows.Forms.Label();
             this.idField = new System.Windows.Forms.TextBox();
@@ -63,10 +63,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.placeOfWorkField = new System.Windows.Forms.ComboBox();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.restartButtonn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clearButton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.restartButtonn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.panelmenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -111,6 +111,18 @@
             this.searchField.TabIndex = 3;
             this.searchField.TextChanged += new System.EventHandler(this.searchField_TextChanged);
             // 
+            // restartButtonn
+            // 
+            this.restartButtonn.Image = global::medicalProject2.Properties.Resources.restart;
+            this.restartButtonn.Location = new System.Drawing.Point(810, 11);
+            this.restartButtonn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.restartButtonn.Name = "restartButtonn";
+            this.restartButtonn.Size = new System.Drawing.Size(25, 25);
+            this.restartButtonn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.restartButtonn.TabIndex = 1;
+            this.restartButtonn.TabStop = false;
+            this.restartButtonn.Click += new System.EventHandler(this.restartButtonn_Click);
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -154,18 +166,6 @@
             this.clearButton.TabIndex = 0;
             this.clearButton.TabStop = false;
             this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
-            // 
-            // restartButtonn
-            // 
-            this.restartButtonn.Image = global::medicalProject2.Properties.Resources.restart;
-            this.restartButtonn.Location = new System.Drawing.Point(810, 11);
-            this.restartButtonn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.restartButtonn.Name = "restartButtonn";
-            this.restartButtonn.Size = new System.Drawing.Size(25, 25);
-            this.restartButtonn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.restartButtonn.TabIndex = 1;
-            this.restartButtonn.TabStop = false;
-            this.restartButtonn.Click += new System.EventHandler(this.restartButtonn_Click);
             // 
             // pictureBox4
             // 
@@ -483,10 +483,10 @@
             this.Load += new System.EventHandler(this.EmployeesForm_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.restartButtonn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clearButton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.restartButtonn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.panelmenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
