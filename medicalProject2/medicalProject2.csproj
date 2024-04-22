@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,79 +47,63 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddEmployeesForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddEmployeesForm.Designer.cs">
-      <DependentUpon>AddEmployeesForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AddMedicalForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddMedicalForm.Designer.cs">
-      <DependentUpon>AddMedicalForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AddPatientsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddPatientsForm.Designer.cs">
-      <DependentUpon>AddPatientsForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="AutorizMed.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AutorizMed.Designer.cs">
       <DependentUpon>AutorizMed.cs</DependentUpon>
     </Compile>
-    <Compile Include="DoctorsForm.cs">
+    <Compile Include="DataBank.cs" />
+    <Compile Include="DocForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DoctorsForm.Designer.cs">
-      <DependentUpon>DoctorsForm.cs</DependentUpon>
+    <Compile Include="DocForm.Designer.cs">
+      <DependentUpon>DocForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="EmployeesForm.cs">
+    <Compile Include="EmForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EmployeesForm.Designer.cs">
-      <DependentUpon>EmployeesForm.cs</DependentUpon>
+    <Compile Include="EmForm.Designer.cs">
+      <DependentUpon>EmForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MedForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MedForm.Designer.cs">
+      <DependentUpon>MedForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MedicalDB.cs" />
-    <Compile Include="MedicalForm.cs">
+    <Compile Include="PatientsForm1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MedicalForm.Designer.cs">
-      <DependentUpon>MedicalForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="medical_project_DBDataSet.cs">
-      <DependentUpon>medical_project_DBDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="medical_project_DBDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>medical_project_DBDataSet.xsd</DependentUpon>
+    <Compile Include="PatientsForm1.Designer.cs">
+      <DependentUpon>PatientsForm1.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AddEmployeesForm.resx">
-      <DependentUpon>AddEmployeesForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddMedicalForm.resx">
-      <DependentUpon>AddMedicalForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AddPatientsForm.resx">
-      <DependentUpon>AddPatientsForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="AutorizMed.resx">
       <DependentUpon>AutorizMed.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DoctorsForm.resx">
-      <DependentUpon>DoctorsForm.cs</DependentUpon>
+    <EmbeddedResource Include="DocForm.resx">
+      <DependentUpon>DocForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EmployeesForm.resx">
-      <DependentUpon>EmployeesForm.cs</DependentUpon>
+    <EmbeddedResource Include="EmForm.resx">
+      <DependentUpon>EmForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MedicalForm.resx">
-      <DependentUpon>MedicalForm.cs</DependentUpon>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MedForm.resx">
+      <DependentUpon>MedForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatientsForm1.resx">
+      <DependentUpon>PatientsForm1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -130,17 +115,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="medical_project_DBDataSet.xsc">
-      <DependentUpon>medical_project_DBDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="medical_project_DBDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>medical_project_DBDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="medical_project_DBDataSet.xss">
-      <DependentUpon>medical_project_DBDataSet.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -183,6 +157,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="images\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

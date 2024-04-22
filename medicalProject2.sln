@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "medicalProject2", "medicalProject2\medicalProject2.csproj", "{20DC8F98-8782-4F61-A0B1-CAEB07589ACB}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database1", "C:\Users\ionya\source\repos\Database1\Database1.sqlproj", "{60D88FD0-BF75-4F76-BE91-345ED8D7C45D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,12 @@ Global
 		{20DC8F98-8782-4F61-A0B1-CAEB07589ACB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20DC8F98-8782-4F61-A0B1-CAEB07589ACB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20DC8F98-8782-4F61-A0B1-CAEB07589ACB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60D88FD0-BF75-4F76-BE91-345ED8D7C45D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60D88FD0-BF75-4F76-BE91-345ED8D7C45D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60D88FD0-BF75-4F76-BE91-345ED8D7C45D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{60D88FD0-BF75-4F76-BE91-345ED8D7C45D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60D88FD0-BF75-4F76-BE91-345ED8D7C45D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60D88FD0-BF75-4F76-BE91-345ED8D7C45D}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

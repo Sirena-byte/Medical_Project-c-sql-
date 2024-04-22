@@ -1,19 +1,17 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Net.Mime.MediaTypeNames;
+using System.Data.SqlClient;
 
 namespace medicalProject2
 {
-    public partial class DoctorsForm : Form
+    public partial class DocForm : Form
     {
         enum RowState
         {
@@ -27,7 +25,7 @@ namespace medicalProject2
 
         MedicalDB dbM = new MedicalDB();
         int selectedRow;
-        public DoctorsForm()
+        public DocForm()
         {
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -36,19 +34,13 @@ namespace medicalProject2
             closeNoteButton.Visible = false;
         }
 
-
-
-        private void DoctorsForm_Load(object sender, EventArgs e)
+        private void DocForm_Load(object sender, EventArgs e)
         {
             CreateColumn();//создаем таблицу
             RefreshDataGrid(dataGridViewPriem);//выводим в нее данные из бд
             CreateColumnCard();
-
-            //выводит все больницы
-            LoadComboBox($"SELECT id_inst,name_inst FROM medical_inst JOIN category ON medical_inst.id_category = category.id_category where category.name_category = 'больница'", "name_inst", "id_inst", this.medicalField);
-            //выводит врачей этой больницы
-            LoadComboBox($"SELECT id_employee, concat_ws(' ',first_name,last_name,surname,' [',name_position,'-',profile_name,']') as prof FROM employees JOIN doctors_profiles ON employees.doctor_profile = doctors_profiles.id_profile JOIN positions_job ON employees.position_job = positions_job.id_position JOIN medical_inst ON employees.place_of_work = medical_inst.id_inst where medical_inst.name_inst = '{medicalField.Text}' and positions_job.name_position = 'врач'", "prof", "id_employee", this.doctorNameField);
-
+            medicalInstField.Text = DataBank.name_medical;
+            fallNameDocField.Text = DataBank.full_name_user + " " + DataBank.profession_user + "-" + DataBank.profile_user;
         }
         private void LoadComboBox(string query, string name, string value, ComboBox box) //метод заполнения комбо боксов
         {
@@ -69,13 +61,10 @@ namespace medicalProject2
 
         }
 
-        private void medicalField_SelectedIndexChanged(object sender, EventArgs e) //выбираем врачей данной больницы
+        private void medicalField_SelectedIndexChanged(object sender, EventArgs e)//выбираем врачей данной больницы
         {
-
-            //выбираем врачей данной больницы
-            LoadComboBox($"SELECT id_employee, concat_ws(' ',first_name,last_name,surname,' [',name_position,'-',profile_name,']') as prof FROM employees JOIN doctors_profiles ON employees.doctor_profile = doctors_profiles.id_profile JOIN positions_job ON employees.position_job = positions_job.id_position JOIN medical_inst ON employees.place_of_work = medical_inst.id_inst where medical_inst.name_inst = '{medicalField.Text}' and positions_job.name_position = 'врач'", "prof", "id_employee", this.doctorNameField);
         }
- 
+
         public static string AddPatient(string id) //поиск пациента по коду пациента(id)
         {
             string namePatient = "";
@@ -118,11 +107,11 @@ namespace medicalProject2
         {
             patientField.Text = AddPatient(idPatientField.Text);
         }
-        
+
         private void saveButton_Click(object sender, EventArgs e)
         {
             dbM.openConnection();
-            if (idPatientField.Text == "" || doctorNameField.Text == "" || descField.Text == "" || temperaturaField.Text == "" || pressureField.Text == "" || diagnosisField.Text == "" || appointmentField.Text == "")
+            if (idPatientField.Text == "" ||/* doctorNameField.Text == ""||*/ descField.Text == "" || temperaturaField.Text == "" || pressureField.Text == "" || diagnosisField.Text == "" || appointmentField.Text == "")
             {
                 MessageBox.Show("Не заполнены все поля! Проверьте данные и попробуйте снова!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
@@ -130,18 +119,19 @@ namespace medicalProject2
             {
                 string date_of_visit = dateTimePicker.Value.ToString();
                 int id_patient = Convert.ToInt32(idPatientField.Text);
-                int id_doctor = Convert.ToInt32(doctorNameField.SelectedValue);
+                //int id_doctor = Convert.ToInt32(doctorNameField.SelectedValue);
+                int id_doctor = DataBank.id_user;
                 string inspector = descField.Text;
                 string body_temperature = temperaturaField.Text;
                 string pressure = pressureField.Text;
                 string diagnosis = diagnosisField.Text;
                 string appointment = appointmentField.Text;
 
-
-                var addQuery = $"insert into visiting_sheets (date_of_visit,id_patient,id_doctor, inspector, body_temperature,pressure,diagnosis,appointment) values ('{date_of_visit}','{id_patient}','{id_doctor}','{inspector}','{body_temperature}','{pressure}','{diagnosis}','{appointment}')";
+                //в запросе закомментирован врач
+                var addQuery = $"insert into visiting_sheets (date_of_visit,id_patient,id_doctor, inspector, body_temperature,pressure,diagnosis,appointment) values ('{date_of_visit}','{id_patient}','{DataBank.id_user}','{inspector}','{body_temperature}','{pressure}','{diagnosis}','{appointment}')";
                 var command = new SqlCommand(addQuery, dbM.getConnection());
                 if (command.ExecuteNonQuery() == 1)
-                    MessageBox.Show("Запись успешно добавлена!", "Успех!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    { }
                 else
                     MessageBox.Show("Запись не добавлена...", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 ClearField();
@@ -150,12 +140,10 @@ namespace medicalProject2
             }
         }//добавление записи приема(данные пациента о его здоровье)
 
-        //-------------------------------вывод таблицы приема пациентов--------------------------------------
-
         private void CreateColumn() //рисуем таблицу с проведенными приемами
         {
             dataGridViewPriem.Columns.Add("IsNewCount", "Порядковый номер");
-            dataGridViewPriem.Columns.Add("id_patient", "Код пациента");
+            dataGridViewPriem.Columns.Add("id_patient", "Код карты");
             dataGridViewPriem.Columns.Add("fio", "ФИО пациента");
             dataGridViewPriem.Columns.Add("IsNew", String.Empty);
             dataGridViewPriem.Columns.Add("id_sheet", "ид приема");
@@ -171,11 +159,12 @@ namespace medicalProject2
         {
             dgw.Rows.Add(count, record.GetInt32(0), record.GetString(1), RowState.ModifietedNew, record.GetInt32(2));
         }
-        
+
         private void RefreshDataGrid(DataGridView dgw) //метод выводит данные в таблицу приема (заполняет поля)
         {
+            //в запросе закомментирован врач {doctorNameField.SelectedValue}
             dgw.Rows.Clear();
-            string queryString = $"SELECT visiting_sheets.id_patient, concat_ws(' ',first_name,last_name,surname) as fio,id_sheet FROM visiting_sheets JOIN patients ON visiting_sheets.id_patient = patients.id_patient where date_of_visit = '{dateTimePicker.Value}' and id_doctor = '{doctorNameField.SelectedValue}'";
+            string queryString = $"SELECT visiting_sheets.id_patient, concat_ws(' ',first_name,last_name,surname) as fio,id_sheet FROM visiting_sheets JOIN patients ON visiting_sheets.id_patient = patients.id_patient where date_of_visit = '{dateTimePicker.Value}' and id_doctor = '{DataBank.id_user}'";
 
 
             SqlCommand command = new SqlCommand(queryString, dbM.getConnection());
@@ -194,7 +183,8 @@ namespace medicalProject2
 
         }
 
-        private void dataGridViewPriem_CellContentClick(object sender, DataGridViewCellEventArgs e)//действия при клике по таблице приема(выводит данные в карту пациента при клике на него в таблице приема
+        private void dataGridViewPriem_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        //действия при клике по таблице приема(выводит данные в карту пациента при клике на него в таблице приема
         {
 
 
@@ -217,8 +207,6 @@ namespace medicalProject2
             }
 
         }
-
-
         //-------------------------------вывод таблицы карта пациента--------------------------------------
         private void CreateColumnCard()//метод рисует таблицу карты пациента
         {
@@ -240,12 +228,13 @@ namespace medicalProject2
         }
         protected void ReadSingleRowCard(DataGridView dgw, IDataRecord record)//метод выводит данные в таблицу карты пациента
         {
-            dgw.Rows.Add(count, record.GetDateTime(0), record.GetString(1), record.GetString(2), record.GetInt32(3), RowState.ModifietedNew);
+            dgw.Rows.Add(count, record.GetDateTime(0).ToShortDateString()/*отрезаем время*/, record.GetString(1), record.GetString(2), record.GetInt32(3), RowState.ModifietedNew);
         }
-       
+
         private void RefreshDataGridCard(DataGridView dgw, int id) //метод выводит данные в таблицу с приемами по выбранному пациенту
         {
             dgw.Rows.Clear();
+            
             string queryString = $"SELECT date_of_visit , employees.first_name , profile_name ,id_sheet FROM visiting_sheets JOIN employees ON visiting_sheets.id_doctor = employees.id_employee JOIN doctors_profiles ON doctors_profiles.id_profile = employees.doctor_profile JOIN patients ON patients.id_patient = visiting_sheets.id_patient WHERE visiting_sheets.id_patient = '{id}'";
 
 
@@ -276,15 +265,8 @@ namespace medicalProject2
             RefreshDataGrid(dataGridViewPriem);
         }//при выборе доктора заполняется таблица приема этого врача
 
-        private void exitButtom_Click(object sender, EventArgs e)
-        {
-            AutorizMed autoriz = new AutorizMed();
-            autoriz.Show();
-            this.Hide();
-        }//переход на окно авторизации
         private void dataGridViewCard_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
             selectedRow = e.RowIndex;
             if (e.RowIndex >= 0)//если поле есть в таблице
             {
@@ -297,7 +279,9 @@ namespace medicalProject2
                 //MessageBox.Show(str.ToString());
                 fillingOutTheFieldsPriem(str);
             }
-        }//действия при клике по карте пациента для выбора записи
+        }
+
+        //действия при клике по карте пациента для выбора записи
         private void fillingOutTheFieldsPriem(string id_priem)//заполнение полей при выборе записи приема
         {
             closeNoteButton.Visible = true;
@@ -314,33 +298,34 @@ namespace medicalProject2
 
                 while (reader.Read())
                 {
+                    
                     dateTimePicker.Value = reader.GetDateTime(0);
-                    doctorNameField.Text = reader.GetString(1);
+                    //doctorNameField.Text = reader.GetString(1);
                     patientField.Text = reader.GetString(2);
                     descField.Text = reader.GetString(3);
                     temperaturaField.Text = reader.GetString(4);
                     pressureField.Text = reader.GetString(5);
                     diagnosisField.Text = reader.GetString(6);
                     appointmentField.Text = reader.GetString(7);
-                    idPatientField.Text =Convert.ToString( reader.GetInt32(8));
+                    idPatientField.Text = Convert.ToString(reader.GetInt32(8));
                 }
                 reader.Close();
                 dbM.closeConnection();
             }
+
         }
-
-
 
         private void closeNoteButton_Click(object sender, EventArgs e)
         {
             clearNote();
             closeNoteButton.Visible = false;
             saveButton.Visible = true;
+           
         }
 
         private void clearNote()
         {
-            doctorNameField.Text = "";
+           // doctorNameField.Text = "";
             dateTimePicker.Text = "";
             patientField.Text = "";
             descField.Text = "";
@@ -350,6 +335,11 @@ namespace medicalProject2
             appointmentField.Text = "";
             idPatientField.Text = "";
         }
+
+        private void exitButtom_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            
+        }
     }
 }
-

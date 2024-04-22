@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using ComboBox = System.Windows.Forms.ComboBox;
+using System.Xml.Linq;
 
 namespace medicalProject2
 {
-    public partial class MedicalForm : Form
+    public partial class MedForm : Form
     {
         //состояние данных в таблице
         enum RowState
@@ -26,27 +26,25 @@ namespace medicalProject2
         MedicalDB dbM = new MedicalDB();
 
         int selectedRow;
-        public MedicalForm()
+        public MedForm()
         {
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
-            idField.Visible = false;
-            idName.Visible = false;
+            //idField.Visible = false;
         }
 
-        private void MedicalForm_Load(object sender, EventArgs e)
+        private void MedForm_Load(object sender, EventArgs e)
         {
             CreateColumn();
             RefreshDataGrid(dataGridView1);
-            
-            //LoadComboBox("SELECT id_employee,concat_ws(' ',first_name,last_name,surname) as name FROM employees", "name", "id_employee", this.supervisorField);
-            LoadComboBox("SELECT * FROM category", "name_category", "id_category", this.categoryField);
 
-            this.ClearField();
+            LoadComboBox("SELECT * FROM category ", "name_category", "id_category", this.ucategoryField);
+            //LoadComboBox("SELECT * FROM category", "name_category", "id_category", this.acategoryField);
+
+            this.ClearFielda();
+            this.ClearFieldu();
+            idField.Visible = false;
         }
-
         private void CreateColumn()
         {
             dataGridView1.Columns.Add("id_inst", "id");//первое поле название поля в бд, второе так, как будет выводить таблица
@@ -56,7 +54,7 @@ namespace medicalProject2
             dataGridView1.Columns.Add("phone_num", "Телефон");
             //dataGridView1.Columns.Add("first_name", "Руководитель");
             dataGridView1.Columns.Add("IsNew", String.Empty);
-            dataGridView1.Columns[0].Visible = false;
+            //dataGridView1.Columns[0].Visible = false;
             dataGridView1.Columns[1].Width = 170;
             dataGridView1.Columns[2].Width = 400;
             dataGridView1.Columns[3].Width = 250;
@@ -71,21 +69,30 @@ namespace medicalProject2
             dgw.Rows.Add(record.GetInt32(0), record.GetString(1), record.GetString(2), record.GetString(3), record.GetString(4), RowState.ModifietedNew);
         }
         //метод очищает поля
-        private void ClearField()
+        private void ClearFielda()
         {
-            categoryField.Text = "";
-            nameField.Text = "";
-            streetField.Text = "";
-            hauseField.Text = "";
-            phoneField.Text = "";
-            supervisorField.Text = "";
+            acategoryField.Text = "";
+            anameField.Text = "";
+            astreetField.Text = "";
+            ahouseField.Text = "";
+            aphoneField.Text = "";
+            
+        }
+        private void ClearFieldu()
+        {
+            ucategoryField.Text = "";
+            unameField.Text = "";
+            ustreetField.Text = "";
+            uhauseField.Text = "";
+            uphoneField.Text = "";
+
         }
 
         //метод выводит данные в таблицу
         private void RefreshDataGrid(DataGridView dgw)
         {
             dgw.Rows.Clear();
-            string queryString = $"SELECT id_inst,name_category,name_inst,address_inst,phone_inst FROM medical_inst JOIN category ON medical_inst.id_category = category.id_category";
+            string queryString = $"SELECT id_inst,name_category,name_inst,address_inst,phone_inst FROM medical_inst JOIN category ON medical_inst.id_category = category.id_category where name_inst != 'Все организации'";
 
             SqlCommand command = new SqlCommand(queryString, dbM.getConnection());
             dbM.openConnection();
@@ -99,7 +106,6 @@ namespace medicalProject2
             reader.Close();
             dbM.closeConnection();
         }
-
         //метод для того, чтобы при нажатии на ячейку, данные переносились в форму для изменения
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -113,8 +119,8 @@ namespace medicalProject2
                 var selectedRovIndex = dataGridView1.CurrentCell.RowIndex;//присваиваем значение текущего столбца и текущего индекса
 
                 idField.Text = row.Cells[0].Value.ToString();
-                categoryField.Text = row.Cells[1].Value.ToString();
-                nameField.Text = row.Cells[2].Value.ToString();
+                ucategoryField.Text = row.Cells[1].Value.ToString();
+                unameField.Text = row.Cells[2].Value.ToString();
                 //разделяем поле адреса на ячейки улица-дом
                 string addr = row.Cells[3].Value.ToString();
                 string[] address = addr.Split('-');
@@ -122,12 +128,12 @@ namespace medicalProject2
                 if (address.Count() > 1)
                 {
                     string hause = address[1];
-                    hauseField.Text = hause;
+                    uhauseField.Text = hause;
                 }
-                streetField.Text = street;
+                ustreetField.Text = street;
 
-                phoneField.Text = row.Cells[4].Value.ToString();
-               // supervisorField.Text = row.Cells[5].Value.ToString();
+                uphoneField.Text = row.Cells[4].Value.ToString();
+                // supervisorField.Text = row.Cells[5].Value.ToString();
             }
         }
 
@@ -137,10 +143,10 @@ namespace medicalProject2
             var selectedRovIndex = dataGridView1.CurrentCell.RowIndex;//присваиваем значение текущего столбца и текущего индекса
             //var id = selectedRovIndex.ToString();
             var id = idField.Text;
-            var name = nameField.Text;
-            var category = categoryField.Text;
-            var address = streetField.Text + "-" + hauseField.Text;
-            var phone = phoneField.Text;
+            var name = unameField.Text;
+            var category = ucategoryField.Text;
+            var address = ustreetField.Text + "-" + uhauseField.Text;
+            var phone = uphoneField.Text;
             //var supervisor = supervisorField.Text;
 
             //проверяем не пустая ли строка с определенным индексом в нулевом столбце
@@ -193,13 +199,12 @@ namespace medicalProject2
             reader.Close();
             dbM.closeConnection();
         }
+
         private void searchField_TextChanged(object sender, EventArgs e)
         {
             Search(dataGridView1);
         }
 
-        //-------удаление-------------
-        //метод удаления
         private void deleteRow()
         {
             int index = dataGridView1.CurrentCell.RowIndex;//передаем строку на которой находимся
@@ -224,10 +229,11 @@ namespace medicalProject2
                 if (rowState == RowState.Existed)
                     continue;
                 //------------------------------------------------------------
-                //удадение не трогать - работает
+                //удадение 
                 if (rowState == RowState.Deleted)
                 {
                     var id = Convert.ToInt32(dataGridView1.Rows[index].Cells[0].Value);//передаем значение айдишника
+                    MessageBox.Show("id= " + id);
                     var deleteQuery = $"delete from medical_inst where id_inst = {id}";
 
                     var command = new SqlCommand(deleteQuery, dbM.getConnection());
@@ -235,7 +241,7 @@ namespace medicalProject2
                     RefreshDataGrid(dataGridView1);
                 }
                 //--------------------------------------------------------------
-                //------------изменение данных - работает-----------------------
+                //------------изменение данных -----------------------
                 if (rowState == RowState.Modifieted)
                 {
                     var id = dataGridView1.Rows[index].Cells[0].Value.ToString();
@@ -243,70 +249,61 @@ namespace medicalProject2
                     var name = dataGridView1.Rows[index].Cells[2].Value.ToString();
                     var address = dataGridView1.Rows[index].Cells[3].Value.ToString();
                     var phone = dataGridView1.Rows[index].Cells[4].Value.ToString();
-                    //var supervisor = dataGridView1.Rows[index].Cells[5].Value.ToString();
-                    /*string[] emp = supervisor.Split(' ');
-                    string superv = emp[0];*/
+                   
 
                     //заносим измененные данные в базу данных
-                    var changeQuery = $"update medical_inst set id_category = (select id_category from  category where name_category = '{category}'),name_inst  = '{name}',address_inst = '{address}', phone_inst = '{phone}' )where id_inst = '{id}'";
+                    var changeQuery = $"update medical_inst set id_category = (select id_category from  category where name_category = '{category}'),name_inst  = '{name}',address_inst = '{address}', phone_inst = '{phone}' where id_inst = '{id}'";
 
                     var command = new SqlCommand(changeQuery, dbM.getConnection());
                     command.ExecuteNonQuery();
                     MessageBox.Show("Изменения успешно сохранены!", "Успех!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     RefreshDataGrid(dataGridView1);
-                    ClearField();
+                    ClearFieldu();
+                    ClearFielda();
                 }
             }
             dbM.closeConnection();
         }
 
-        //---------кнопки------------//
-        private void restartButtonn_Click(object sender, EventArgs e)
+        private void usaveButton_Click(object sender, EventArgs e)
         {
-            RefreshDataGrid(dataGridView1);
-            ClearField();
-        }
-        private void clearButton_Click(object sender, EventArgs e)
-        {
-            ClearField();
-        }
-        private void saveButton_Click(object sender, EventArgs e)
-        {
+            change();
             update();
         }
 
-
         private void deleteButton_Click(object sender, EventArgs e)
         {
-
             deleteRow();
-        }
-        private void NewsButton_Click(object sender, EventArgs e)
-        {
-            AddMedicalForm addForm = new AddMedicalForm();
-            addForm.Show();
+            update();
+            ClearFieldu();
         }
 
-        private void changeButton_Click(object sender, EventArgs e)
+        private void asaveButton_Click(object sender, EventArgs e)
         {
-            change();
-        }
+            dbM.openConnection();
 
-        private void employysButton_Click(object sender, EventArgs e)
-        {
-            EmployeesForm employees = new EmployeesForm();
-            employees.Show();
-            this.Visible = false;
-        }
+            //объявляем переменные, заполняем значениями из полей
+            if (anameField.Text != string.Empty || acategoryField.Text != string.Empty || aphoneField.Text != string.Empty || astreetField.Text != string.Empty|| ahouseField.Text != string.Empty)
+            {
+                var id = idField.Text;
+                string name = anameField.Text;
+                int category = (int)acategoryField.SelectedValue;
+                string address = astreetField.Text + "-" + ahouseField.Text;
+                string phone = aphoneField.Text;
+                
+                var addQuery = $"insert into medical_inst(id_category,name_inst,address_inst, phone_inst) values ('{category}','{name}','{address}','{phone}')";
+                var command = new SqlCommand(addQuery, dbM.getConnection());
+                command.ExecuteNonQuery();
+                MessageBox.Show("Запись успешно добавлена!", "Успех!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ClearFielda();
+                RefreshDataGrid(dataGridView1);
+            }
 
-        private void hauseField_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void supervisorField_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+            else
+            {
+                MessageBox.Show("Заполните все поля!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            dbM.closeConnection();
         }
     }
 }

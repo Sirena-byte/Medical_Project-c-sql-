@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace medicalProject2
 {
     internal static class Program
@@ -16,7 +17,8 @@ namespace medicalProject2
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AddPatientsForm());
+            Application.Run(new AutorizMed());
+
         }
     }
 }

@@ -8,10 +8,9 @@ D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.csproj.GenerateReso
 D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.csproj.CoreCompileInputs.cache
 D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.exe
 D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.pdb
-D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.AddMedicalForm.resources
-D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.MedicalForm.resources
-D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.EmployeesForm.resources
-D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.AddEmployeesForm.resources
 D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.AutorizMed.resources
-D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.DoctorsForm.resources
-D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.AddPatientsForm.resources
+D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.EmForm.resources
+D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.PatientsForm1.resources
+D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.MedForm.resources
+D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.DocForm.resources
+D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.Form1.resources
