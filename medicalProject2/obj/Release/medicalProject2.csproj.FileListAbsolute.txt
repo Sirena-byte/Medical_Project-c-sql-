@@ -13,4 +13,4 @@ D:\medicalProject2\medicalProject2\obj\Release\medicalProject2.csproj.GenerateRe
 D:\medicalProject2\medicalProject2\obj\Release\medicalProject2.csproj.CoreCompileInputs.cache
 D:\medicalProject2\medicalProject2\obj\Release\medicalProject2.exe
 D:\medicalProject2\medicalProject2\obj\Release\medicalProject2.pdb
-D:\medicalProject2\medicalProject2\obj\Release\medicalProject2.Form1.resources
+D:\medicalProject2\medicalProject2\obj\Release\medicalProject2.HospitalForm.resources

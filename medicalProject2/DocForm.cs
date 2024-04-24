@@ -162,7 +162,7 @@ namespace medicalProject2
 
         private void RefreshDataGrid(DataGridView dgw) //метод выводит данные в таблицу приема (заполняет поля)
         {
-            //в запросе закомментирован врач {doctorNameField.SelectedValue}
+            
             dgw.Rows.Clear();
             string queryString = $"SELECT visiting_sheets.id_patient, concat_ws(' ',first_name,last_name,surname) as fio,id_sheet FROM visiting_sheets JOIN patients ON visiting_sheets.id_patient = patients.id_patient where date_of_visit = '{dateTimePicker.Value}' and id_doctor = '{DataBank.id_user}'";
 

@@ -48,6 +48,7 @@ namespace medicalProject2
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             dbM = new MedicalDB();
+            getCategiryMedical();
             medicalAncor.Text = DataBank.name_medical;
 
             labellogin.Visible = false;
@@ -107,8 +108,18 @@ namespace medicalProject2
             dataGridViewEmpl.Columns.Add("id_employee", "id");//первое поле название поля в бд, второе так, как будет выводить таблица
             dataGridViewEmpl.Columns.Add("first_name", "ФИО");
             dataGridViewEmpl.Columns.Add("name_position", "Должность");
-            dataGridViewEmpl.Columns.Add("name_specialisation", "Профиль");
-            dataGridViewEmpl.Columns.Add("name_inst", "Место работы");
+           
+            if(DataBank.id_category_inst == 2)
+            {
+                dataGridViewEmpl.Columns.Add("profile_name", "Профиль");
+                dataGridViewEmpl.Columns.Add("name_department", "Место работы");
+            }
+            else
+            {
+                dataGridViewEmpl.Columns.Add("name_specialisation", "Профиль");
+                dataGridViewEmpl.Columns.Add("name_inst", "Место работы");
+            }
+            
             dataGridViewEmpl.Columns.Add("IsNew", String.Empty);
             dataGridViewEmpl.Columns[0].Visible = false;
             dataGridViewEmpl.Columns[1].Width = 290;
@@ -129,8 +140,16 @@ namespace medicalProject2
         {
             dgw.Rows.Clear();
             string queryString;
-            if (DataBank.id_medical != 16) {
-               queryString = $"SELECT id_employee, first_name, last_name, surname, name_position,profile_name, name_inst FROM employees JOIN positions_job ON employees.position_job = positions_job.id_position JOIN doctors_profiles ON employees.doctor_profile = doctors_profiles.id_profile JOIN medical_inst ON employees.place_of_work = medical_inst.id_inst WHERE name_inst ='{medicalAncor.Text}'";
+            if (DataBank.id_medical != 16)
+            {
+                if (DataBank.id_category_inst == 2)
+                {
+                    queryString = $"select employees.id_employee, first_name,last_name,surname,name_position,profile_name,concat_ws(' ',name_department,' отделение')as name_department  from hospital_department_workers join employees on hospital_department_workers.id_employee = employees.id_employee join departments on id_department = hospital_department_workers.id_department_hospital join positions_job on id_position = position_job join doctors_profiles on id_profile = doctor_profile where hospital_department_workers.id_hospital = '{DataBank.id_medical}'";
+                }
+                else
+                {
+                    queryString = $"SELECT id_employee, first_name, last_name, surname, name_position,profile_name, name_inst FROM employees JOIN positions_job ON employees.position_job = positions_job.id_position JOIN doctors_profiles ON employees.doctor_profile = doctors_profiles.id_profile JOIN medical_inst ON employees.place_of_work = medical_inst.id_inst WHERE name_inst ='{medicalAncor.Text}'";
+                }
             }
             else
             {
@@ -224,7 +243,7 @@ namespace medicalProject2
             }
             //MessageBox.Show(aProfessionField.SelectedValue.ToString());
             //если выбрана специальность врач, регистратор или провизор, то задаем логин и пароль( для простоты тестирования заданы значения по умолчанию для логина)
-            if(aProfessionField.SelectedValue.ToString()=="2"|| aProfessionField.SelectedValue.ToString()=="13"|| aProfessionField.SelectedValue.ToString() == "14")
+            if(aProfessionField.SelectedValue.ToString()=="2"|| aProfessionField.SelectedValue.ToString()=="13"|| aProfessionField.SelectedValue.ToString() == "14" || aProfessionField.SelectedValue.ToString() == "12")
             {
                 loginField.Visible = true;
                 passField.Visible = true;
@@ -256,94 +275,6 @@ namespace medicalProject2
             }
         }
 
-        private void dataGridViewEmpl_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            aloginField.Text = string.Empty;
-            aloginField.Visible = false;
-            aloginlabel.Visible = false;
-            apassField.Text = string.Empty;
-            apassField.Visible = false;
-            apasslabel.Visible = false;
-            
-            selectedRow = e.RowIndex;
-            if (e.RowIndex >= 0)//если поле есть в таблице
-            {
-                DataGridViewRow row = dataGridViewEmpl.Rows[selectedRow];//смотрим какой индекс у поля
-                //проходим по полям
-
-                //при нажатии на поле заполняются поля
-                var selectedRovIndex = dataGridViewEmpl.CurrentCell.RowIndex;//присваиваем значение текущего столбца и текущего индекса
-                                                                          // MessageBox.Show(upositionJobField.SelectedValue.ToString() + "=" + upositionJobField.Text );//выводит индекс
-                idField.Text = row.Cells[0].Value.ToString();
-                string fio = row.Cells[1].Value.ToString();
-                string[] fiO = fio.Split(' ');
-                uFirstNameField.Text = fiO[0];
-                if (fiO.Count() > 1)
-                {
-                    string lastName = fiO[1];
-                    uLastNameField.Text = lastName;
-                    string surname = fiO[2];
-                    uSurnameField.Text = surname;
-                }
-
-                uProfessionField.Text = row.Cells[2].Value.ToString();
-                uProfileField.Text = row.Cells[3].Value.ToString();
-               
-                    if (uProfessionField.Text == "врач" || uProfessionField.Text == "регистратор") 
-                {
-                    if (uProfessionField.Text == "врач")
-                    {
-                        uProfileField.Visible = true;
-                        label8.Visible = true;
-                    }
-                    dbM.openConnection();
-                    string queryStr = $"select id_user from register where id_empl = '{int.Parse(idField.Text)}'";
-                    SqlCommand command = new SqlCommand(queryStr, dbM.getConnection());
-                    SqlDataReader reader = command.ExecuteReader();
-                    reader.Read();
-
-                    if (reader.HasRows)
-                    {
-                        reader.Close();
-                    }
-                   
-                    else
-                    {
-                        DialogResult dialog = MessageBox.Show("это " + uProfessionField.Text + " и у него нет аккаунта. Хотите создать аккаунт?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                        if (dialog == DialogResult.Yes)
-                        {
-                            try
-                            {
-                                MessageBox.Show("хорошо, задаем пароль");
-                                aloginField.Visible = true;
-                                apassField.Visible = true;
-                                aloginlabel.Visible = true;
-                                apasslabel.Visible = true;
-
-
-                            }
-                            catch
-                            {
-
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("ну как хочешь...");
-                        }
-                    }
-                    reader.Close();
-                    dbM.closeConnection();
-                }
-                else
-                {
-                    uProfileField.Visible = false;
-                    label8.Visible = false;
-                }
-            }
-        }
-
-
         private void restartButtonn_Click(object sender, EventArgs e)
         {
             RefreshDataGrid(dataGridViewEmpl);
@@ -352,22 +283,30 @@ namespace medicalProject2
         //
         private void change()
         {
-            var selectedRovIndex = dataGridViewEmpl.CurrentCell.RowIndex;//присваиваем значение текущего столбца и текущего индекса
-            //var id = selectedRovIndex.ToString();
-            var id = idField.Text;
-            var firstname = uFirstNameField.Text + " " + uLastNameField.Text + " " + uSurnameField.Text;
-            var profession = uProfessionField.Text;
-            var profile = uProfileField.Text;
-            var placeOfWork = medicalAncor.Text;
-
-            //проверяем не пустая ли строка с определенным индексом в нулевом столбце
-            if (dataGridViewEmpl.Rows[selectedRovIndex].Cells[0].Value.ToString() != string.Empty)
+            try
             {
-                //проверяем тип вводимых данных, чтобы не было конфликта с базой данных
-                //присваиваются значения текстбоксов нижней формы строке , то есть меняем данные в грид таблице
-                dataGridViewEmpl.Rows[selectedRovIndex].SetValues(id, firstname, profession, profile, placeOfWork);//потом вернуть
-                dataGridViewEmpl.Rows[selectedRovIndex].Cells[5].Value = RowState.Modifieted;
+                var selectedRovIndex = dataGridViewEmpl.CurrentCell.RowIndex;//присваиваем значение текущего столбца и текущего индекса
+                                                                             //var id = selectedRovIndex.ToString();
+                var id = idField.Text;
+                var firstname = uFirstNameField.Text + " " + uLastNameField.Text + " " + uSurnameField.Text;
+                var profession = uProfessionField.Text;
+                var profile = uProfileField.Text;
+                var placeOfWork = medicalAncor.Text;
 
+                //проверяем не пустая ли строка с определенным индексом в нулевом столбце
+                if (dataGridViewEmpl.Rows[selectedRovIndex].Cells[0].Value.ToString() != string.Empty)
+                {
+                    //проверяем тип вводимых данных, чтобы не было конфликта с базой данных
+                    //присваиваются значения текстбоксов нижней формы строке , то есть меняем данные в грид таблице
+                    dataGridViewEmpl.Rows[selectedRovIndex].SetValues(id, firstname, profession, profile, placeOfWork);//потом вернуть
+                    dataGridViewEmpl.Rows[selectedRovIndex].Cells[5].Value = RowState.Modifieted;
+
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Вы пытаетесь изменить не существующую запись!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ClearField();
             }
         }
 
@@ -424,12 +363,28 @@ namespace medicalProject2
                     string lastName = fullname[1];
                     string surname = fullname[2];
                     var profession = dataGridViewEmpl.Rows[index].Cells[2].Value.ToString();
-                    var profile = dataGridViewEmpl.Rows[index].Cells[3].Value.ToString();
-                    var placeOfWork = dataGridViewEmpl.Rows[index].Cells[4].Value.ToString();
-                    
+                    string profile;
+                    if (profession.ToString() != "врач")
+                    {
+                        profile = " ";
+                    }
+                    else
+                    {
+                        profile = dataGridViewEmpl.Rows[index].Cells[3].Value.ToString();
+                    }
+                    int plaseOfWork = DataBank.id_medical;
 
+                    //---------------------------------------------------------------------------------------------------!!!!!!!----------------------------------
+                    var changeQuery = "";
+                    var placeOfWork = dataGridViewEmpl.Rows[index].Cells[4].Value.ToString();
+                    changeQuery = $" update employees set first_name  = '{firstName}',last_name = '{lastName}', surname = '{surname}' , position_job = (select id_position from positions_job where name_position = '{profession}' ) ,place_of_work = (select id_inst from medical_inst where name_inst = '{placeOfWork}'), doctor_profile = (select id_profile from doctors_profiles where profile_name = '{profile}' ) where id_employee = '{id}'";
+                    if (DataBank.id_category_inst == 2)
+                    {
+                        
+                    }
+                
                     //заносим измененные данные в базу данных
-                    var changeQuery = $" update employees set first_name  = '{firstName}',last_name = '{lastName}', surname = '{surname}' , position_job = (select id_position from positions_job where name_position = '{profession}' ) ,place_of_work = (select id_inst from medical_inst where name_inst = '{placeOfWork}'), doctor_profile = (select id_profile from doctors_profiles where profile_name = '{profile}' ) where id_employee = '{id}'";
+                    
 
                     var command = new SqlCommand(changeQuery, dbM.getConnection());
                     command.ExecuteNonQuery();
@@ -469,7 +424,7 @@ namespace medicalProject2
                         apassField.Visible = false;
                         apasslabel.Visible = false;
                         update();
-                        
+                        searchField.Text = "";
                     }
                     catch
                     {
@@ -482,7 +437,7 @@ namespace medicalProject2
                 
                 change();
                 update();
-                MessageBox.Show("я во втором если");
+                
                 //если не заполнены данные, то сюда не заходит
             }
             dbM.closeConnection();
@@ -512,7 +467,15 @@ namespace medicalProject2
         {
             dgw.Rows.Clear();
 
-            string searchString = $"SELECT id_employee,first_name,last_name,surname,name_position,profile_name, name_inst FROM employees JOIN doctors_profiles ON employees.doctor_profile = doctors_profiles.id_profile JOIN positions_job ON employees.position_job = positions_job.id_position JOIN medical_inst ON employees.place_of_work = medical_inst.id_inst where concat(id_employee,first_name,last_name,surname,name_position,profile_name,name_inst)like '%" + searchField.Text + "%'";
+            String searchString = "";
+            if (DataBank.id_category_inst == 2)
+            {
+                searchString = $"select employees.id_employee, first_name,last_name,surname,name_position,profile_name,concat_ws(' ',name_department,' отделение')as name_department  from hospital_department_workers join employees on hospital_department_workers.id_employee = employees.id_employee join departments on id_department = hospital_department_workers.id_department_hospital join positions_job on id_position = position_job join doctors_profiles on id_profile = doctor_profile where hospital_department_workers.id_hospital = '{DataBank.id_medical}' and concat(employees.id_employee,first_name,last_name,surname,name_position,profile_name,name_department)like '%" + searchField.Text + "%'";
+            }
+            else
+            {
+                searchString = $"SELECT id_employee,first_name,last_name,surname,name_position,profile_name, name_inst FROM employees JOIN doctors_profiles ON employees.doctor_profile = doctors_profiles.id_profile JOIN positions_job ON employees.position_job = positions_job.id_position JOIN medical_inst ON employees.place_of_work = medical_inst.id_inst where concat(id_employee,first_name,last_name,surname,name_position,profile_name,name_inst)like '%" + searchField.Text + "%'";
+            }
 
             SqlCommand command = new SqlCommand(searchString, dbM.getConnection());
 
@@ -524,6 +487,7 @@ namespace medicalProject2
             {
                 ReadSingleRow(dgw, reader);//построчно выводим
             }
+
             reader.Close();
             dbM.closeConnection();
         }
@@ -553,7 +517,7 @@ namespace medicalProject2
                 else { 
                     profile = (int)aProfileField.SelectedValue;
                 }
-                if (profession == 2 || profession == 13 || profession == 14)//если это врач или регистратор или провизор, то задаем логин и пароль
+                if (profession == 2 || profession == 13 || profession == 14  || profession ==12)//если это врач или регистратор или провизор или заведующий, то задаем логин и пароль
                 {
                     if (loginField.Text != "" && passField.Text != "")//если логин и пароль заполнены
                     {
@@ -589,9 +553,10 @@ namespace medicalProject2
                     else
                     {
                         MessageBox.Show("Заполните логин и пароль", "");
+                      
                     }
                 }
-                else if(profession != 2 || profession != 13 || profession != 14)
+                else if(profession != 2 || profession != 13 || profession != 14 || profession !=12)
                 {
                     int placeOfWork = DataBank.id_medical;
                     var addQuery = $"insert into employees(first_name,last_name,surname, position_job, doctor_profile,place_of_work) values ('{firstName}','{lastName}','{surname}','{profession}','{profile}','{placeOfWork}')";
@@ -631,6 +596,103 @@ namespace medicalProject2
         private void aProfileField_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void dataGridViewEmpl_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            aloginField.Text = string.Empty;
+            aloginField.Visible = false;
+            aloginlabel.Visible = false;
+            apassField.Text = string.Empty;
+            apassField.Visible = false;
+            apasslabel.Visible = false;
+
+            selectedRow = e.RowIndex;
+            if (e.RowIndex >= 0)//если поле есть в таблице
+            {
+                DataGridViewRow row = dataGridViewEmpl.Rows[selectedRow];//смотрим какой индекс у поля
+                //проходим по полям
+
+                //при нажатии на поле заполняются поля
+                var selectedRovIndex = dataGridViewEmpl.CurrentCell.RowIndex;//присваиваем значение текущего столбца и текущего индекса
+                                                                           
+                idField.Text = row.Cells[0].Value.ToString();
+                string fio = row.Cells[1].Value.ToString();
+                string[] fiO = fio.Split(' ');
+                uFirstNameField.Text = fiO[0];
+                if (fiO.Count() > 1)
+                {
+                    string lastName = fiO[1];
+                    uLastNameField.Text = lastName;
+                    string surname = fiO[2];
+                    uSurnameField.Text = surname;
+                }
+
+                uProfessionField.Text = row.Cells[2].Value.ToString();
+                uProfileField.Text = row.Cells[3].Value.ToString();
+
+                if (uProfessionField.Text == "врач" || uProfessionField.Text == "регистратор" || uProfessionField.Text == "заведующий")
+                {
+                    if (uProfessionField.Text == "врач")
+                    {
+                        uProfileField.Visible = true;
+                        label8.Visible = true;
+                    }
+                    dbM.openConnection();
+                    string queryStr = $"select id_user from register where id_empl = '{int.Parse(idField.Text)}'";
+                    SqlCommand command = new SqlCommand(queryStr, dbM.getConnection());
+                    SqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+
+                    if (reader.HasRows)
+                    {
+                        reader.Close();
+                    }
+
+                    else
+                    {
+                        DialogResult dialog = MessageBox.Show("это " + uProfessionField.Text + " и у него нет аккаунта. Хотите создать аккаунт?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                        if (dialog == DialogResult.Yes)
+                        {
+                            try
+                            {
+                                MessageBox.Show("хорошо, задаем пароль");
+                                aloginField.Visible = true;
+                                apassField.Visible = true;
+                                aloginlabel.Visible = true;
+                                apasslabel.Visible = true;
+
+
+                            }
+                            catch
+                            {
+
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("ну как хочешь...");
+                        }
+                    }
+                    reader.Close();
+                    dbM.closeConnection();
+                }
+                else
+                {
+                    uProfileField.Visible = false;
+                    label8.Visible = false;
+                }
+            }
+        }
+
+        private void getCategiryMedical()
+        {
+            dbM.openConnection();
+            string queryStr = $"select id_category from medical_inst where id_inst = '{DataBank.id_medical}'";
+            SqlCommand command = new SqlCommand(queryStr, dbM.getConnection());
+            string result = command.ExecuteScalar().ToString();
+            DataBank.id_category_inst = int.Parse(result);
+            dbM.closeConnection();
         }
     }
 }

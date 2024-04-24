@@ -721,6 +721,7 @@
             this.dataGridViewEmpl.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewEmpl.Size = new System.Drawing.Size(1103, 437);
             this.dataGridViewEmpl.TabIndex = 3;
+            this.dataGridViewEmpl.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEmpl_CellContentClick_1);
             // 
             // tableLayoutPanel4
             // 

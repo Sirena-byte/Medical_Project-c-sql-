@@ -71,7 +71,7 @@
             this.autorizButton.Name = "autorizButton";
             this.autorizButton.Size = new System.Drawing.Size(205, 35);
             this.autorizButton.TabIndex = 25;
-            this.autorizButton.Text = "Ввойти в аккаунт";
+            this.autorizButton.Text = "Войти в аккаунт";
             this.autorizButton.UseVisualStyleBackColor = true;
             this.autorizButton.Click += new System.EventHandler(this.autorizButton_Click);
             // 

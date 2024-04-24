@@ -818,10 +818,10 @@ namespace medicalProject2
             dbM.closeConnection();
         }
 
+        private void labelMed_Click(object sender, EventArgs e)
+        {
 
-
-
-    
+        }
     }
 }
 /*

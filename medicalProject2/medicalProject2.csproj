@@ -66,11 +66,11 @@
     <Compile Include="EmForm.Designer.cs">
       <DependentUpon>EmForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="HospitalForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="HospitalForm.Designer.cs">
+      <DependentUpon>HospitalForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MedForm.cs">
       <SubType>Form</SubType>
@@ -96,8 +96,8 @@
     <EmbeddedResource Include="EmForm.resx">
       <DependentUpon>EmForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="HospitalForm.resx">
+      <DependentUpon>HospitalForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MedForm.resx">
       <DependentUpon>MedForm.cs</DependentUpon>

@@ -14,3 +14,4 @@ D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.PatientsForm1.resou
 D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.MedForm.resources
 D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.DocForm.resources
 D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.Form1.resources
+D:\medicalProject2\medicalProject2\obj\Debug\medicalProject2.HospitalForm.resources
